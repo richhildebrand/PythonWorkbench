@@ -8,7 +8,8 @@ c = "corey"
 def testFunction():
 	rich = "richard"
 	print "/nttestFunction scope/n"
-test()
+	
+testFunction()
 
 print "\nglobal scope\n"
 
