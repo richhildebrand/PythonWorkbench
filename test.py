@@ -1,18 +1,15 @@
 #https://github.com/pythoncapstone/capstone.git
 import pprint
 
-print "Hello world"
-
 a = "mike"
 b = 5
 c = "corey"
 
-def test():
+def testFunction():
 	rich = "richard"
-	print "fine indent"
-	pprint.pprint(locals())
+	print "/nttestFunction scope/n"
 test()
 
-print "\nsecond scope\n"
+print "\nglobal scope\n"
 
 pprint.pprint(locals())
