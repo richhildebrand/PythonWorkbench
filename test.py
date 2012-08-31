@@ -7,8 +7,9 @@ c = "corey"
 
 def testFunction():
 	rich = "richard"
-	print "/nttestFunction scope/n"
-	
+	print "\nttestFunction scope\n"
+	pprint.pprint(locals())
+
 testFunction()
 
 print "\nglobal scope\n"
