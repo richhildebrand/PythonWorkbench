@@ -1,4 +1,4 @@
 print "Hello world"
 
-def test:
+def test():
 	print "fine indent"
