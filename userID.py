@@ -4,7 +4,7 @@ import sys
 def userFunctionWrapper():
 	instructions = open("PdbInstructions.txt")
 	sys.stdin = instructions
-	sys.stdout = open("result.txt", "w+")
+	sys.stdout = open("bobResultFile.txt", "w+")
 	#for line in instructions:
 	#	print line
 	pdb.set_trace()

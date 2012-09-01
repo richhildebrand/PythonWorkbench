@@ -1,3 +1,4 @@
 step
+!pprint.pprint(locals())
 list
 quit
