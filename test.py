@@ -10,28 +10,11 @@ def wrapperFunction():
 	b = 5
 	c = "corey"
 
-	def testFunction():
-		rich = "richard"
-		print "\ntestFunction scope\n"
-		pprint.pprint(locals())
-
-	testFunction()
-
-	#userCode = "import " + "userID.txt" 
-	#eval(userCode, {}, locals())
-	print "##############"
-	import userID
-	myfunction = userID.userFunctionWrapper()
-	try:
-		Thread(target=myfunction, args=('MyStringHere',1)).start()
-	except Exception, errtxt:
-		print errtxt
-	print "##############"
-		
-
-
 	print "\nwrapper scope\n"
 	pprint.pprint(locals())
+
+	print "##### Call UserID #####"
+	#os.system()
 
 wrapperFunction()
 
