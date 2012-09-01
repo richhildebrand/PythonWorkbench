@@ -2,7 +2,7 @@
 import pprint
 import pdb
 import os
-import thread
+from threading import Thread
 
 def wrapperFunction():
 
@@ -21,9 +21,11 @@ def wrapperFunction():
 	#eval(userCode, {}, locals())
 	print "##############"
 	import userID
-
-	thread.start_new_thread(userID.userFunctionWrapper())
-
+	myfunction = userID.userFunctionWrapper()
+	try:
+		Thread(target=myfunction, args=('MyStringHere',1)).start()
+	except Exception, errtxt:
+		print errtxt
 	print "##############"
 		
 
