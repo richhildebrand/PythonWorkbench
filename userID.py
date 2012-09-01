@@ -1,9 +1,13 @@
 import pprint
 import pdb
+import sys
 def userFunctionWrapper():
-	for line in sys.stdin:
-		print "printing a line" + line
-
+	instructions = open("PdbInstructions.txt")
+	sys.stdin = instructions
+	sys.stdout = open("result.txt", "w+")
+	#for line in instructions:
+	#	print line
+	pdb.set_trace()
 	userA = 3
 	userB = 4
 	userC = userA + userB

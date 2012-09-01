@@ -1,0 +1,15 @@
+> c:\users\richard\desktop\projects\python\capstone\userid.py(11)userFunctionWrapper()
+-> userA = 3
+(Pdb) > c:\users\richard\desktop\projects\python\capstone\userid.py(12)userFunctionWrapper()
+-> userB = 4
+(Pdb)   7  		sys.stdout = open("result.txt", "w+")
+  8  		#for line in instructions:
+  9  		#	print line
+ 10  		pdb.set_trace()
+ 11  		userA = 3
+ 12  ->		userB = 4
+ 13  		userC = userA + userB
+ 14  	
+ 15  	userFunctionWrapper()
+[EOF]
+(Pdb) 
