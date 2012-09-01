@@ -5,3 +5,5 @@ def userFunctionWrapper():
 	userA = 3
 	userB = 4
 	userC = userA + userB
+
+userFunctionWrapper()
