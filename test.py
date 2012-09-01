@@ -13,14 +13,11 @@ def wrapperFunction():
 
 	testFunction()
 
-	seth = 'a = "tom"'
-	seth2 = 'a + "ben"'
-	#empty set limits globals
-	exec(seth) in {}, locals()
-	result = eval(seth2, {}, locals())
-	
-	print seth
-	print result
+	#userCode = "import " + "userID.txt" 
+	#eval(userCode, {}, locals())
+
+	import userID
+	userID.userFunctionWrapper()
 
 	print "\nwrapper scope\n"
 	pprint.pprint(locals())
