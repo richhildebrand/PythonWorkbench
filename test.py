@@ -1,5 +1,7 @@
 #https://github.com/pythoncapstone/capstone.git
 import pprint
+import pdb
+import os
 def wrapperFunction():
 
 	a = "mike"
@@ -17,7 +19,14 @@ def wrapperFunction():
 	#eval(userCode, {}, locals())
 
 	import userID
-	userID.userFunctionWrapper()
+	#userID.userFunctionWrapper()
+
+	#pdb.run('userID.userFunctionWrapper()')
+	print "##############"
+	f=os.popen("ls -l")
+	for i in f.readlines():
+		print "myresult:",i,
+	print "##############"
 
 	print "\nwrapper scope\n"
 	pprint.pprint(locals())
@@ -26,3 +35,5 @@ wrapperFunction()
 
 print "\nglobal scope\n"
 pprint.pprint(locals())
+
+
