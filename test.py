@@ -2,6 +2,8 @@
 import pprint
 import pdb
 import os
+import thread
+
 def wrapperFunction():
 
 	a = "mike"
@@ -17,16 +19,14 @@ def wrapperFunction():
 
 	#userCode = "import " + "userID.txt" 
 	#eval(userCode, {}, locals())
-
+	print "##############"
 	import userID
-	#userID.userFunctionWrapper()
 
-	#pdb.run('userID.userFunctionWrapper()')
+	thread.start_new_thread(userID.userFunctionWrapper())
+
 	print "##############"
-	f=os.popen("python userID.py a b c")
-	for i in f.readlines():
-		print "myresult:",i,
-	print "##############"
+		
+
 
 	print "\nwrapper scope\n"
 	pprint.pprint(locals())
