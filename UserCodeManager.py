@@ -1,5 +1,11 @@
 import sys
 import PythonFileBuilder
+import io
+import pdb
+import thread
+import time
+import os
+from threading import Thread
 
 class UserCodeManager:
 	def __init__(self, userID, userCode):
@@ -20,13 +26,17 @@ class UserCodeManager:
 			userCodeFile.close()
 
 	def __runFile(self):
-		#these will change during exec; should be moved out if possible
 		defaultStdin = sys.stdin
 		defaultStdout = sys.stdout
+		sys.stdin = io.StringIO("step")
+		sys.stdout = open(self.userID + 'ResultFile.txt', 'w+')
+		
 		try:
-			exec('import ' + self.userID + 'CodeFile', {}, {})
+			#thread.start_new_thread(pdb.run, ('import ' + self.userID + 'CodeFile', {}, locals()))
+			#Thread(target=pdb.run, args=('import ' + self.userID + 'CodeFile', {}, locals())).start()
+			pdb.run('import ' + self.userID + 'CodeFile', {}, {})
 		except:
-			print "needed to catch hard brake from pdb"
+			print "line needed for catch"
 		finally:
 			sys.stdin = defaultStdin
 			sys.stdout = defaultStdout

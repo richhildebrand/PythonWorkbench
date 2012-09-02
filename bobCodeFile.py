@@ -1,12 +1,10 @@
-import sys
-import pprint
-import pdb
+
 def WrapperFunction():
 	print "hello world"
 	print "line2"
 	a=3
 	b=4
-	c = a + b;sys.stdin = open("PdbInstructions.txt");sys.stdout = open("bobResultFile.txt", "w+");pdb.set_trace()
+	c = a + b
 	print a
 	print b
 	print c

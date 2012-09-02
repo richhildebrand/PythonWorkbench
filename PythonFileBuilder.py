@@ -3,10 +3,10 @@ class PythonFileBuilder:
 			self.code = code
 
 		def buildFile(self):
-			self.__injectPdbCode()
+			#self.__injectPdbCode()
 			self.__addTabToNewLines()
 			self.__addWrapperFunction()
-			self.__addImports()
+			#self.__addImports()
 			self.__addCallForWrapperFunction()
 			return self.code
 
