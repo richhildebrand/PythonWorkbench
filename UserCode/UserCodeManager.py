@@ -20,7 +20,7 @@ class UserCodeManager:
 		pythonFileBuilder = PythonFileBuilder.PythonFileBuilder(self.userCode)
 		self.userCode = pythonFileBuilder.buildFile()
 		try:
-			userCodeFile = open(self.userID+'CodeFile.py', 'w+')
+			userCodeFile = open('./UserFiles/CodeFiles/'+self.userID+'CodeFile.py', 'w+')
 			userCodeFile.write(self.userCode)
 		finally:
 			userCodeFile.close()
@@ -29,7 +29,7 @@ class UserCodeManager:
 		defaultStdin = sys.stdin
 		defaultStdout = sys.stdout
 		sys.stdin = io.StringIO("step")
-		sys.stdout = open(self.userID + 'ResultFile.txt', 'w+')
+		sys.stdout = open('./UserFiles/ResultFiles/'+self.userID+'ResultFile.txt', 'w+')
 		
 		try:
 			#thread.start_new_thread(pdb.run, ('import ' + self.userID + 'CodeFile', {}, locals()))
