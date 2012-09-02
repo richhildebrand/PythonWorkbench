@@ -1,11 +1,5 @@
-import sys
+import sys, io, pdb
 import PythonFileBuilder
-import io
-import pdb
-import thread
-import time
-import os
-from threading import Thread
 
 class UserCodeManager:
 	def __init__(self, userID, userCode):
