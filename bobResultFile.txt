@@ -1,16 +1,16 @@
-> c:\users\richard\desktop\projects\python\capstone\bobcodefile.py(14)userCodeWrapper()
+> c:\users\richard\desktop\projects\python\capstone\bobcodefile.py(13)WrapperFunction()
 -> print a
 (Pdb) 3
-> c:\users\richard\desktop\projects\python\capstone\bobcodefile.py(15)userCodeWrapper()
+> c:\users\richard\desktop\projects\python\capstone\bobcodefile.py(14)WrapperFunction()
 -> print b
 (Pdb) {'a': 3, 'b': 4, 'c': 7}
-(Pdb)  10  		c = a + b
- 11  		sys.stdin = open("PdbInstructions.txt")
- 12  		sys.stdout = open("bobResultFile.txt", "w+")
- 13  		pdb.set_trace()
- 14  		print a
- 15  ->		print b
- 16  		print c
- 17  	userCodeWrapper()
+(Pdb)   9  		c = a + b
+ 10  		sys.stdin = open("PdbInstructions.txt")
+ 11  		sys.stdout = open("bobResultFile.txt", "w+")
+ 12  		pdb.set_trace()
+ 13  		print a
+ 14  ->		print b
+ 15  		print c
+ 16  	WrapperFunction()
 [EOF]
-(Pdb) 
+(Pdb) needed to catch hard brake from pdb

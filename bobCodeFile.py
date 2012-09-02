@@ -1,8 +1,7 @@
-
 import sys
 import pprint
 import pdb
-def userCodeWrapper():
+def WrapperFunction():
 	print "hello world"
 	print "line2"
 	a=3
@@ -14,4 +13,4 @@ def userCodeWrapper():
 	print a
 	print b
 	print c
-userCodeWrapper()
+WrapperFunction()

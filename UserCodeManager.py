@@ -1,4 +1,6 @@
 import sys
+import PythonFileBuilder
+
 class UserCodeManager:
 	def __init__(self, userID, userCode):
 		self.userID = userID
@@ -9,6 +11,8 @@ class UserCodeManager:
 		self.__runFile()
 
 	def __createUserCodeFile(self):
+		pythonFileBuilder = PythonFileBuilder.PythonFileBuilder(self.userCode)
+		self.userCode = pythonFileBuilder.buildFile()
 		try:
 			userCodeFile = open(self.userID+'CodeFile.py', 'w+')
 			userCodeFile.write(self.userCode)
@@ -16,11 +20,13 @@ class UserCodeManager:
 			userCodeFile.close()
 
 	def __runFile(self):
-		#try:
-		#sys.stdin = 'PdbInstructions.txt'
-		#resultFile = open(self.userID + 'ResultFile.txt', 'w+')
-		#sys.stdout = resultFile
-		exec('import ' + self.userID + 'CodeFile', {}, {})
-
-	#def returnUserCode():
-	#	return userID + 'ResultFile.txt'
+		#these will change during exec; should be moved out if possible
+		defaultStdin = sys.stdin
+		defaultStdout = sys.stdout
+		try:
+			exec('import ' + self.userID + 'CodeFile', {}, {})
+		except:
+			print "needed to catch hard brake from pdb"
+		finally:
+			sys.stdin = defaultStdin
+			sys.stdout = defaultStdout
