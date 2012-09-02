@@ -17,7 +17,6 @@ class UserCodeManager:
 		pythonFileBuilder = PythonFileBuilder.PythonFileBuilder(self.userCode)
 		self.userCode = pythonFileBuilder.buildFile()
 		try:
-			PythonLib.ensureDirectory(self.USER_FILE_PATH)	
 			userCodeFile = open(self.userID+'CodeFile.py', 'w+')
 			userCodeFile.write(self.userCode)
 		finally:
@@ -27,8 +26,8 @@ class UserCodeManager:
 		defaultStdin = sys.stdin
 		defaultStdout = sys.stdout
 		sys.stdin = io.StringIO("step")
+		PythonLib.ensureDirectory(self.USER_FILE_PATH)
 		sys.stdout = open(self.USER_FILE_PATH + self.userID + 'ResultFile.txt', 'w+')
-		
 		try:
 			#thread.start_new_thread(pdb.run, ('import ' + self.userID + 'CodeFile', {}, locals()))
 			#Thread(target=pdb.run, args=('import ' + self.userID + 'CodeFile', {}, locals())).start()
