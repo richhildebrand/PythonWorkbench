@@ -1,4 +1,8 @@
 step
-!pprint.pprint(locals())
+step
+step
+step
+step
+step
+step
 list
-quit
