@@ -32,5 +32,7 @@ class UserCodeManager:
 		except:
 			print "line needed for catch"
 		finally:
+			sys.stdin.close()
+			sys.stdout.close()
 			sys.stdin = defaultStdin
 			sys.stdout = defaultStdout
