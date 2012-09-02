@@ -1,7 +1,10 @@
 import sys, io, pdb
-from UserCode import PythonFileBuilder
+import PythonFileBuilder
+from PythonLib import PythonLib
 
 class UserCodeManager:
+	USER_FILE_PATH = "UserFiles/"
+
 	def __init__(self, userID, userCode):
 		self.userID = userID
 		self.userCode = userCode
@@ -14,6 +17,7 @@ class UserCodeManager:
 		pythonFileBuilder = PythonFileBuilder.PythonFileBuilder(self.userCode)
 		self.userCode = pythonFileBuilder.buildFile()
 		try:
+			PythonLib.ensureDirectory(self.USER_FILE_PATH)	
 			userCodeFile = open(self.userID+'CodeFile.py', 'w+')
 			userCodeFile.write(self.userCode)
 		finally:
@@ -23,7 +27,7 @@ class UserCodeManager:
 		defaultStdin = sys.stdin
 		defaultStdout = sys.stdout
 		sys.stdin = io.StringIO("step")
-		sys.stdout = open(self.userID + 'ResultFile.txt', 'w+')
+		sys.stdout = open(self.USER_FILE_PATH + self.userID + 'ResultFile.txt', 'w+')
 		
 		try:
 			#thread.start_new_thread(pdb.run, ('import ' + self.userID + 'CodeFile', {}, locals()))

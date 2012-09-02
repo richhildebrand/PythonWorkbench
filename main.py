@@ -1,8 +1,6 @@
 import sys
 from UserCode import UserCodeManager
 
-
-
 userID = 'bob'
 
 userCode = 'print "hello world"\nprint "line2"\n'
