@@ -23,7 +23,7 @@ class PythonFileBuilder:
 			self.code = self.code + "\nWrapperFunction()"
 
 		def __injectPdbCode(self):
-			PdbCode = '\nsys.stdin = open("PdbInstructions.txt")'
-			PdbCode = PdbCode + '\nsys.stdout = open("bobResultFile.txt", "w+")'
-			PdbCode = PdbCode + '\npdb.set_trace()'
+			PdbCode = ';sys.stdin = open("PdbInstructions.txt")'
+			PdbCode = PdbCode + ';sys.stdout = open("bobResultFile.txt", "w+")'
+			PdbCode = PdbCode + ';pdb.set_trace()'
 			self.code = self.code.replace('replaceMeWithPdbCode', PdbCode)
