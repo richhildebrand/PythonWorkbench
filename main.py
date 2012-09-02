@@ -1,4 +1,4 @@
-from UserCode import UserCodeManager
+import UserCodeManager
 
 replaceMeWithPdbCode = 'replaceMeWithPdbCode'
 
