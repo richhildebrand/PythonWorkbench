@@ -1,5 +1,0 @@
-> <string>(1)<module>()
-(Pdb) --Call--
-> c:\users\richard\desktop\projects\python\capstone\bobcodefile.py(1)<module>()
--> def WrapperFunction():
-(Pdb) 
