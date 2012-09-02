@@ -1,4 +1,7 @@
-import UserCodeManager
+import sys
+from UserCode import UserCodeManager
+
+
 
 userID = 'bob'
 

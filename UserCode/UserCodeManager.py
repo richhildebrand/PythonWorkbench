@@ -1,5 +1,5 @@
 import sys, io, pdb
-import PythonFileBuilder
+from UserCode import PythonFileBuilder
 
 class UserCodeManager:
 	def __init__(self, userID, userCode):
@@ -29,8 +29,6 @@ class UserCodeManager:
 			#thread.start_new_thread(pdb.run, ('import ' + self.userID + 'CodeFile', {}, locals()))
 			#Thread(target=pdb.run, args=('import ' + self.userID + 'CodeFile', {}, locals())).start()
 			pdb.run('import ' + self.userID + 'CodeFile', {}, {})
-		except:
-			print "line needed for catch"
 		finally:
 			sys.stdin.close()
 			sys.stdout.close()
