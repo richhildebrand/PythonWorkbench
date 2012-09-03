@@ -1,6 +1,5 @@
 import io, pdb
 import PythonFileBuilder
-import CustomIOManager
 from PythonLib import PythonLib
 
 class UserCodeManager:
@@ -24,14 +23,14 @@ class UserCodeManager:
 
 	def __runFile(self):
 		PythonLib.ensureDirectoryExists(self.USER_FILE_PATH)
-		outputFromPDB = open(self.USER_FILE_PATH + self.userID + 'ResultFile.txt', 'w+')
-		inputForPDB = io.StringIO(self.pythonFileBuilder.getPdcInstructions(self.stepNumber))
+		outputFromDebugger = open(self.USER_FILE_PATH + self.userID + 'ResultFile.txt', 'w+')
+		inputForDebugger = io.StringIO(self.pythonFileBuilder.getPdcInstructions(self.stepNumber))
 
-		customIOManager = CustomIOManager.CustomIOManager()
-		customIOManager.setCustomIO(inputForPDB, outputFromPDB)
+		debugger = pdb.Pdb(completekey='tab', stdin=inputForDebugger, stdout=outputFromDebugger)
 		try:
 			#thread.start_new_thread(pdb.run, ('import ' + self.userID + 'CodeFile', {}, locals()))
 			#Thread(target=pdb.run, args=('import ' + self.userID + 'CodeFile', {}, locals())).start()
-			pdb.run('import ' + self.userCodeFilePath, {}, {})
+			debugger.run('import ' + self.userCodeFilePath, {}, {})
 		finally:
-			customIOManager.cleanUpCustomIO()
+			outputFromDebugger.close()
+			inputForDebugger.close()
