@@ -5,9 +5,10 @@ from PythonLib import PythonLib
 class UserCodeManager:
 	USER_FILE_PATH = "UserFiles/"
 
-	def __init__(self, userID, userCode):
+	def __init__(self, userID, userCode, stepNumber):
 		self.userID = userID
 		self.userCode = userCode
+		self.stepNumber = stepNumber + PythonFileBuilder.PythonFileBuilder.LINES_ADDED
 	
 	def executeUserCode(self):
 		self.__createUserCodeFile()
@@ -25,7 +26,7 @@ class UserCodeManager:
 	def __runFile(self):
 		defaultStdin = sys.stdin
 		defaultStdout = sys.stdout
-		sys.stdin = io.StringIO("step")
+		sys.stdin = io.StringIO(self.__getPdcInstructions())
 		PythonLib.ensureDirectory(self.USER_FILE_PATH)
 		sys.stdout = open(self.USER_FILE_PATH + self.userID + 'ResultFile.txt', 'w+')
 		try:
@@ -37,3 +38,7 @@ class UserCodeManager:
 			sys.stdout.close()
 			sys.stdin = defaultStdin
 			sys.stdout = defaultStdout
+
+	def __getPdcInstructions(self):
+			instructions = "step;;" * self.stepNumber
+			return instructions

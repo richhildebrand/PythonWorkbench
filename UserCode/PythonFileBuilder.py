@@ -1,4 +1,6 @@
 class PythonFileBuilder:
+		LINES_ADDED = 2
+
 		def __init__(self, code):	
 			self.code = code
 
