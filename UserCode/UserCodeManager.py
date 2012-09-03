@@ -28,8 +28,6 @@ class UserCodeManager:
 
 		debugger = pdb.Pdb(completekey='tab', stdin=inputForDebugger, stdout=outputFromDebugger)
 		try:
-			#thread.start_new_thread(pdb.run, ('import ' + self.userID + 'CodeFile', {}, locals()))
-			#Thread(target=pdb.run, args=('import ' + self.userID + 'CodeFile', {}, locals())).start()
 			debugger.run('import ' + self.userCodeFilePath, {}, {})
 		except Exception, e:
 			print e
