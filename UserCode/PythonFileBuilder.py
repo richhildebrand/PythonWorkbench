@@ -1,5 +1,5 @@
 class PythonFileBuilder:
-	LINES_ADDED_FROM_WRAPPER = 5
+	STEPS_NEED_TO_FIRST_LINE = 5
 
 	def buildFile(self, code, filePrefix):
 		code = self.__addTabToNewLines(code)
@@ -9,7 +9,7 @@ class PythonFileBuilder:
 		return newFilePath
 
 	def getPdcInstructions(self, stepNumber):
-		instructions = "step;;" * (stepNumber + self.LINES_ADDED_FROM_WRAPPER)
+		instructions = "step;;" * (stepNumber + self.STEPS_NEED_TO_FIRST_LINE)
 		instructions = instructions + "locals()"
 		return instructions
 
