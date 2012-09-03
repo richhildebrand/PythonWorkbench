@@ -1,4 +1,4 @@
-import sys, io, pdb
+import io, pdb
 import PythonFileBuilder
 import CustomIOManager
 from PythonLib import PythonLib
