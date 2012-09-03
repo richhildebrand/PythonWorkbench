@@ -1,25 +1,32 @@
 class PythonFileBuilder:
-	LINES_ADDED_WHEN_BUILDING_FILE = 5
+	LINES_ADDED_FROM_WRAPPER = 5
 
-	def __init__(self, code):	
-		self.code = code
+	def buildFile(self, code, filePrefix):
+		code = self.__addTabToNewLines(code)
+		code = self.__addWrapperFunction(code)
+		code = self.__addCallForWrapperFunction(code)
+		newFilePath = self.__createUserCodeFile(code, filePrefix)
+		return newFilePath
 
-	def buildFile(self):
-		self.__addTabToNewLines()
-		self.__addWrapperFunction()
-		self.__addCallForWrapperFunction()
-		return self.code
-
-	def __addTabToNewLines(self):
-		self.code = self.code.replace('\n', '\n\t')
-
-	def __addWrapperFunction(self):
-		self.code = 'def WrapperFunction():\n\t' + self.code
-
-	def __addCallForWrapperFunction(self):
-		self.code = self.code + "\nWrapperFunction()"
-	
 	def getPdcInstructions(self, stepNumber):
-		instructions = "step;;" * (stepNumber + self.LINES_ADDED_WHEN_BUILDING_FILE)
+		instructions = "step;;" * (stepNumber + self.LINES_ADDED_FROM_WRAPPER)
 		instructions = instructions + "locals()"
 		return instructions
+
+	def __addTabToNewLines(self, code):
+		return code.replace('\n', '\n\t')
+
+	def __addWrapperFunction(self, code):
+		return 'def WrapperFunction():\n\t' + code
+
+	def __addCallForWrapperFunction(self, code):
+		return code + "\nWrapperFunction()"
+
+	def __createUserCodeFile(self, code, filePrefix):
+		fullFilePath = filePrefix + 'CodeFile.py'
+		try:
+			codeFile = open(fullFilePath, 'w+')
+			codeFile.write(code)
+		finally:
+			codeFile.close()
+		return fullFilePath

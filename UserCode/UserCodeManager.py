@@ -6,24 +6,18 @@ class UserCodeManager:
 	USER_FILE_PATH = "UserFiles/"
 
 	def __init__(self, userID, userCode):
-		self.userID = userID
-		self.userCode = userCode
+		self.pythonFileBuilder = PythonFileBuilder.PythonFileBuilder()
 		self.stepNumber = 0
-		self.pythonFileBuilder = PythonFileBuilder.PythonFileBuilder(self.userCode)
-		self.userCode = self.pythonFileBuilder.buildFile()
+		self.userCode = userCode
+		self.userID = userID
+		self.__onInit()
 
 	def executeUserCode(self):
 		self.stepNumber = self.stepNumber + 1
-		self.__createUserCodeFile()
 		self.__runFile()
 
-	def __createUserCodeFile(self):
-
-		try:
-			userCodeFile = open(self.userID+'CodeFile.py', 'w+')
-			userCodeFile.write(self.userCode)
-		finally:
-			userCodeFile.close()
+	def __onInit(self):
+		self.userCodeFilePath =	self.pythonFileBuilder.buildFile(self.userCode, self.userID)
 
 	def __runFile(self):
 		defaultStdin = sys.stdin
@@ -34,7 +28,7 @@ class UserCodeManager:
 		try:
 			#thread.start_new_thread(pdb.run, ('import ' + self.userID + 'CodeFile', {}, locals()))
 			#Thread(target=pdb.run, args=('import ' + self.userID + 'CodeFile', {}, locals())).start()
-			pdb.run('import ' + self.userID + 'CodeFile', {}, {})
+			pdb.run('import ' + self.userCodeFilePath, {}, {})
 		finally:
 			sys.stdin.close()
 			sys.stdout.close()
