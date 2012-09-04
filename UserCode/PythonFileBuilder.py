@@ -10,7 +10,7 @@ class PythonFileBuilder:
 
 	def getPdcInstructions(self, stepNumber):
 		instructions = "step;;" * (stepNumber + self.STEPS_NEED_TO_FIRST_LINE)
-		instructions = instructions + "locals()"
+		instructions = instructions + "list;;locals()"
 		return instructions
 
 	def __addTabToNewLines(self, code):
