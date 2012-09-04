@@ -17,7 +17,7 @@ class UserCodeManager:
 		self.pythonFileBuilder = PythonFileBuilder.PythonFileBuilder()
 		self.userCodeFilePath =	self.pythonFileBuilder.buildFile(self.userCode, self.userID)
 		
-	def executeUserCode(self):
+	def executeStepInUserCode(self):
 		self.stepNumber = self.stepNumber + 1
 		self.__runFile()
 
