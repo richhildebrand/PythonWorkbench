@@ -37,4 +37,4 @@ class UserCodeManager:
 			inputForDebugger.close()
 
 	def __resultOfStepInUserCode(self):
-		return "+ result of step"
+		return " + result of step"
