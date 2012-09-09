@@ -8,13 +8,7 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'capstone.views.home', name='home'),
     # url(r'^capstone/', include('capstone.foo.urls')),
-
-    # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-
-    # Custom URLs
-    url(r'^$', 'public.views.index')
+    url(r'^student/$', 'student.views.index')
 )
