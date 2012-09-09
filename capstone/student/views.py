@@ -9,4 +9,5 @@ def index(request):
 def debugCode(request):
 	userCode = request.POST['PythonCode']
 	userCodeManager = UserCodeManager.UserCodeManager("user", userCode)
-	return HttpResponse(userCode)
+	result = userCodeManager.executeStepInUserCode()
+	return HttpResponse(userCode + result)
