@@ -20,7 +20,7 @@ class UserCodeManager:
 	def executeStepInUserCode(self):
 		self.stepNumber = self.stepNumber + 1
 		self.__runFile()
-		return "+ result of step"
+		return self.__resultOfStepInUserCode()
 
 	def __runFile(self):
 		PythonLib.ensureDirectoryExists(self.USER_FILE_PATH)
@@ -35,3 +35,6 @@ class UserCodeManager:
 		finally:
 			outputFromDebugger.close()
 			inputForDebugger.close()
+
+	def __resultOfStepInUserCode(self):
+		return "+ result of step"
