@@ -1,6 +1,6 @@
 import io, pdb
 import PythonFileBuilder
-from PythonLib import PythonLib
+from capstone.PythonLib import PythonLib
 
 class UserCodeManager:
 	USER_FILE_PATH = "UserFiles/"
