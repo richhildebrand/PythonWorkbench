@@ -37,4 +37,5 @@ class UserCodeManager:
 			inputForDebugger.close()
 
 	def __resultOfStepInUserCode(self):
-		return " + result of step"
+		resultFile = open(self.USER_FILE_PATH + self.userID + 'ResultFile.txt', 'r').read()
+		return resultFile
