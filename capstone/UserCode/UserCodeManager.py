@@ -24,7 +24,7 @@ class UserCodeManager:
 	def __runFile(self):
 		PythonLib.ensureDirectoryExists(self.USER_FILE_PATH)
 		outputFromDebugger = open(self.USER_FILE_PATH + self.userID + 'ResultFile.txt', 'w+')
-		inputForDebugger = io.StringIO(self.pythonFileBuilder.getPdcInstructions(self.stepNumber))
+		inputForDebugger = io.StringIO(unicode(self.pythonFileBuilder.getPdcInstructions(self.stepNumber)))
 
 		debugger = pdb.Pdb(completekey='tab', stdin=inputForDebugger, stdout=outputFromDebugger)
 		try:
