@@ -1,5 +1,6 @@
 # Django settings for capstone project.
 
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -102,9 +103,9 @@ ROOT_URLCONF = 'capstone.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'capstone.wsgi.application'
 
-
 import os
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
+
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
@@ -123,6 +124,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'capstone',
 )
 
 # A sample logging configuration. The only tangible logging
