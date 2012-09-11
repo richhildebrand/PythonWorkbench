@@ -13,4 +13,5 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^student/$', 'capstone.student.views.index'),
     url(r'^student/startDebugging/$', 'capstone.student.views.startDebugging'),
+    url(r'^student/takeStep/$', 'capstone.student.views.takeStep'),
 )

@@ -1,22 +1,27 @@
+<LINK href="{{ STATIC_URL }}styles/site.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.min.js"></script>
-Enter Python in the form below:
-<br/>
-<form id="PythonCodeForm">
-	<input name="PythonCode" id="PythonCode" type="text">
-	<input type="submit" value="Debug Code">
-</form>
-<br/>
-<div id="ResultData">Display debugger results here.</div>
+
+<div id="MainArea">
+	<p>Enter your Python snipit below:</p>
+	<textarea name="PythonCode" id="PythonCode"></textarea>
+	<input id="startDebugging" type="button" value="Start Debugging"><br/>
+	<input id="TakeStep" type="button" value="Next Step"><br/>
+</div>
+
+<div id="ResultData"><p>Display debugger results here.</p></div>
 
 <script type="text/javascript">
-	var resultData;
-
-	$('#PythonCodeForm').submit(function(event) {
+	$('#startDebugging').click(function() {
 		pythonCode = { pythonCode: $('#PythonCode').val() };
 		$.get('/student/startDebugging', pythonCode, function(data) {
 			displayResultData(data)
  		});
-		return false;
+	});
+
+	$("#TakeStep").click(function() {
+	  $.get('/student/takeStep', function(data) {
+			displayResultData(data)
+ 		});
 	});
 
 	var displayResultData = function(data) {
