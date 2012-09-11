@@ -14,12 +14,12 @@ Enter Python in the form below:
 	$('#PythonCodeForm').submit(function(event) {
 		pythonCode = { pythonCode: $('#PythonCode').val() };
 		$.get('/student/debugCode', pythonCode, function(data) {
-		  resultData = data;
+			displayResultData(data)
  		});
 		return false;
 	});
 
-	var displayResultData = function() {
-		alert(resultData);
-	}
+	var displayResultData = function(data) {
+		$('#ResultData').text(data);
+	};
 </script>
