@@ -1,23 +1,19 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template import Context, RequestContext, loader
-from capstone.UserCode import UserCodeManager
+from capstone.UserCode import UserManager
 
-userCodeManager = UserCodeManager.UserCodeManager("user", 'a=7')
+userManager = UserManager.UserManager()
 
 def index(request):
 	return render_to_response('index.html', context_instance=RequestContext(request))
 
 def startDebugging(request):
 	userCode = request.GET['pythonCode']
-	userCodeManager = UserCodeManager.UserCodeManager("user", userCode)
-	stepResult = userCodeManager.executeStepInUserCode()
+	userManager.createUserCodeManager('user', userCode);
+	stepResult = userManager.executeStepInUserCode('user')
 	return HttpResponse(stepResult)
 
 def takeStep(request):
-	response = 'no Exception'
-	try:
-		response = userCodeManager.executeStepInUserCode()
-	except Exception, e:
-		response = e
-	return HttpResponse(response)
+	stepResult = userManager.executeStepInUserCode('user')
+	return HttpResponse(stepResult)
