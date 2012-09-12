@@ -1,5 +1,5 @@
 import sys
-from UserCode import UserCodeManager
+from capstone.UserCode import UserCodeManager
 
 userOne = 'noMethods'
 simpleCode = 'a=3\nb=4\nc = a + b\nd = a + b * c'
