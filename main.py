@@ -1,4 +1,5 @@
 import sys
+import pdb
 from capstone.UserCode import UserCodeManager
 
 userOne = 'noMethods'
