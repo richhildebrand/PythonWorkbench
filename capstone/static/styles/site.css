@@ -6,3 +6,10 @@
 #MainArea {
 	height: 156px;
 }
+
+#MainArea a {
+	text-decoration: underline;
+}
+
+#MainArea textarea {
+	min-width: 411px;

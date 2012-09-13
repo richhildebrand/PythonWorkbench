@@ -2,7 +2,9 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.min.js"></script>
 
 <div id="MainArea">
-	<p>Enter your Python snipit below:</p>
+	<p>Enter your Python snippet below or select an example.<br/>
+	   <a>Simple Example</a> or <a>Method Example</a>
+	</p>
 	<textarea name="PythonCode" id="PythonCode"></textarea>
 	<input id="startDebugging" type="button" value="Start Debugging"><br/>
 	<input id="TakeStep" type="button" value="Next Step"><br/>
@@ -27,4 +29,22 @@
 	var displayResultData = function(data) {
 		$('#ResultData').text(data);
 	}
+</script>
+
+<script type="text/javascript">
+	
+	$('#MainArea a').click(function() {
+		var simpleExample = 'a = 3\nb = 4\nc = a + b\nd = a + b * c'
+		var methodExample = 'Tim="Tim"\ndef hello(name):\n\treturn "Hello " + name\n'
+		methodExample += 'Tim = hello(Tim)\nSeth = "Seth"\nSeth= hello(Seth)'
+
+		var codeToDisplay = simpleExample;	
+		if (($(this).text()) == 'Method Example')
+			codeToDisplay = methodExample;
+		else if (($(this).text()) == 'Simple Example')
+			codeToDisplay = simpleExample;	
+
+		$('#PythonCode').text(codeToDisplay);
+	});
+
 </script>
