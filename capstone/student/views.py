@@ -10,10 +10,12 @@ def index(request):
 
 def startDebugging(request):
 	userCode = request.GET['pythonCode']
-	userManager.createUserCodeManager('user', userCode);
-	stepResult = userManager.executeStepInUserCode('user')
+	sessionIdForAnonymousUser = 'AnonymousUserSession' + request.session.session_key
+	userManager.createUserCodeManager(sessionIdForAnonymousUser, userCode);
+	stepResult = userManager.executeStepInUserCode(sessionIdForAnonymousUser)
 	return HttpResponse(stepResult)
 
 def takeStep(request):
-	stepResult = userManager.executeStepInUserCode('user')
+	sessionIdForAnonymousUser = 'AnonymousUserSession' + request.session.session_key
+	stepResult = userManager.executeStepInUserCode(sessionIdForAnonymousUser)
 	return HttpResponse(stepResult)
