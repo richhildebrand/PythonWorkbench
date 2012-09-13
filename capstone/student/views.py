@@ -10,6 +10,7 @@ def index(request):
 
 def startDebugging(request):
 	userCode = request.GET['pythonCode']
+	request.session.save() 
 	sessionIdForAnonymousUser = 'AnonymousUserSession' + request.session.session_key
 	userManager.createUserCodeManager(sessionIdForAnonymousUser, userCode);
 	stepResult = userManager.executeStepInUserCode(sessionIdForAnonymousUser)
