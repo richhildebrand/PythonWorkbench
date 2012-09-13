@@ -1,15 +1,31 @@
-#PythonCode {
-	height: 100px;
-	float: left;
-}
-
 #MainArea {
-	height: 156px;
+	width: 60%;
+	height: 488px;
+	float: left;
+	margin-right: 5%;
 }
 
 #MainArea a {
 	text-decoration: underline;
+	margin-bottom: 10px;
 }
 
 #MainArea textarea {
-	min-width: 411px;
+	height: 400px;
+	width: 100%;
+	resize: none;
+}
+
+#ResultWindow {
+	width: 30%;
+	height: 400px;
+	float: left;
+	margin-top: 79px;
+}
+
+#ResultWindow #ResultData {
+	width: 100%;
+	height: 400px;
+	float: left;
+	border: solid 1px lightgray;
+}

@@ -5,12 +5,15 @@
 	<p>Enter your Python snippet below or select an example.<br/>
 	   <a>Simple Example</a> or <a>Method Example</a>
 	</p>
-	<textarea name="PythonCode" id="PythonCode"></textarea>
-	<input id="startDebugging" type="button" value="Start Debugging"><br/>
+	<input id="startDebugging" type="button" value="Start Debugging">
 	<input id="TakeStep" type="button" value="Next Step"><br/>
+	<textarea name="PythonCode" id="PythonCode"></textarea>
 </div>
 
-<div id="ResultData"><p>Display debugger results here.</p></div>
+
+<div id="ResultWindow"> <span> Result Window </span> 
+	<div id="ResultData"></div>
+</div>
 
 <script type="text/javascript">
 	$('#startDebugging').click(function() {
