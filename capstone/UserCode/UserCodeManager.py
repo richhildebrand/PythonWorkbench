@@ -39,10 +39,9 @@ class UserCodeManager:
 
 	def __resultOfStepInUserCode(self):
 		# Need replace with actual exception; localVars; lineNumber
-		exception = open(self.USER_FILE_PATH + self.userID + 'ResultFile.txt', 'r').read()
-		localVars = "localVars"
-		lineNumber = 42
+		userStepResult = {}
+		userStepResult['exception'] = open(self.USER_FILE_PATH + self.userID + 'ResultFile.txt', 'r').read()
+		userStepResult['localVars'] = "localVars"
+		userStepResult['lineNumber'] = 42
 
-		userStepResultDTO = namedtuple("userStepResultDTO", "exception localVars lineNumber")
-		userStepResult = userStepResultDTO(exception, localVars, lineNumber)
 		return userStepResult
