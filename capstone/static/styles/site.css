@@ -10,22 +10,29 @@
 	margin-bottom: 10px;
 }
 
-#MainArea textarea {
-	height: 400px;
+#MainArea #PythonCode {
+	height: 350px;
 	width: 100%;
 	resize: none;
 }
 
+#MainArea #MethodCalls {
+	height: 150px;
+	width: 100%;
+	resize: none;
+	background-color: lightgray;
+}
+
 #ResultWindow {
 	width: 30%;
-	height: 400px;
+	height: 497px;
 	float: left;
 	margin-top: 79px;
 }
 
 #ResultWindow #ResultData {
 	width: 100%;
-	height: 400px;
+	height: 100%;
 	float: left;
 	border: solid 1px lightgray;
 }
