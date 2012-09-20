@@ -22,4 +22,4 @@ def startDebugging(request):
 def takeStep(request):
 	sessionIdForAnonymousUser = 'AnonymousUserSession' + request.session.session_key
 	stepResult = userManager.executeStepInUserCode(sessionIdForAnonymousUser)
-	return HttpResponse(stepResult)
+	return HttpResponse(json.dumps(stepResult), mimetype="application/json")
