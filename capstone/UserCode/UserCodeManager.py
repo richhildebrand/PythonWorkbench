@@ -1,6 +1,7 @@
 import io, pdb
 import PythonFileBuilder
 from capstone.PythonLib import PythonLib
+from collections import namedtuple
 
 class UserCodeManager:
 	USER_FILE_PATH = "UserFiles/"
@@ -37,5 +38,11 @@ class UserCodeManager:
 			inputForDebugger.close()
 
 	def __resultOfStepInUserCode(self):
-		resultFile = open(self.USER_FILE_PATH + self.userID + 'ResultFile.txt', 'r').read()
-		return resultFile
+		# Need replace with actual exception; localVars; lineNumber
+		exception = open(self.USER_FILE_PATH + self.userID + 'ResultFile.txt', 'r').read()
+		localVars = "localVars"
+		lineNumber = 42
+
+		userStepResultDTO = namedtuple("userStepResultDTO", "exception localVars lineNumber")
+		userStepResult = userStepResultDTO(exception, localVars, lineNumber)
+		return userStepResult
