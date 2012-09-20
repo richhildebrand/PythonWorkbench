@@ -3,7 +3,7 @@
 
 <div id="MainArea">
 	<p>Enter your Python snippet below or select an example.<br/>
-	   <a>Simple Example</a> or <a>Method Example</a>
+	   <a>Simple Example</a> or <a>Method Example</a> or <a>Stolen Example</a>
 	</p>
 	<input id="startDebugging" type="button" value="Start Debugging">
 	<input id="TakeStep" type="button" value="Next Step"><br/>
@@ -39,15 +39,21 @@
 	
 	$('#MainArea a').click(function() {
 		var forMainArea = [];
-		var method = [];
+		var forMethodArea = [];
 
 		forMainArea['Simple Example'] = 'a = 3\nb = 4\nc = a + b\nd = a + b * c';
 		forMainArea['Method Example'] = 'Tim="Tim"\ndef hello(name):\n\treturn "Hello " + name\n';
 		forMainArea['Method Example'] += 'Tim = hello(Tim)\nSeth = "Seth"\nSeth= hello(Seth)';
+		forMainArea['Stolen Example'] = 'def sleep_in(weekday, vacation):'
+		forMethodArea['Stolen Example'] = 'sleep_in(False, False)\n'
+		forMethodArea['Stolen Example'] += 'sleep_in(True, False)\n'
+		forMethodArea['Stolen Example'] += 'sleep_in(False, True)\n'
+		forMethodArea['Stolen Example'] += 'sleep_in(True, True)'
+
 
 		var exampleToUse = $(this).text()	
 		$('#PythonCode').text(forMainArea[exampleToUse]);
-		$('MethodCalls').text(method[exampleToUse]);
+		$('#MethodCalls').text(forMethodArea[exampleToUse]);
 	});
 
 </script>
