@@ -5,7 +5,6 @@ from django.shortcuts import render_to_response
 from django.template import Context, RequestContext, loader
 from capstone.UserCode import UserManager
 
-
 userManager = UserManager.UserManager()
 
 def index(request):
