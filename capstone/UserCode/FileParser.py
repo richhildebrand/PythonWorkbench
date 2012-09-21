@@ -10,13 +10,13 @@ class FileParser:
     def __init__(self, filename):
         self.parse_file(filename)
 
-    def get_local_vars(self, local_var_string):
-        print local_var_string
-        return local_var_string
+    def get_local_vars(self):
+        print self.local_vars
+        return self.local_vars
 
-    def get_current_line(self, current_line):
-        print current_line
-        return current_line
+    def get_current_line(self):
+        print self.current_line
+        return self.current_line
 
     def __parse_file(self, filename):
         try:
