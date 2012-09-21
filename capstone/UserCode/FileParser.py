@@ -8,7 +8,7 @@ class FileParser:
     current_line = None
 
     def __init__(self, filename):
-        self.parse_file(filename)
+        self.__parse_file(filename)
 
     def get_local_vars(self):
         print self.local_vars
