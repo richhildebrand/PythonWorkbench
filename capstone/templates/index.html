@@ -12,6 +12,7 @@
         <div class="PythonCodeWrap">
                 <input id="startDebugging" type="button" value="Start Debugging">
                 <textarea name="PythonCode" id="PythonCode"></textarea>
+                <textarea id="MethodCalls" readonly="readonly"></textarea>
         </div>
 
         <div class="DebugResultWrap">
@@ -22,7 +23,7 @@
 
 <script type="text/javascript">
 	$('#startDebugging').click(function() {
-		pythonCode = { pythonCode: $('#PythonCode').val() };
+		pythonCode = { pythonCode: $('#PythonCode').val() + '\n' + $('#MethodCalls').val() };
 		$.get('/student/startDebugging', pythonCode, function(data) {
 			displayResultData(data)
  		});
