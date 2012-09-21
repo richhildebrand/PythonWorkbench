@@ -26,8 +26,9 @@ class FileParser:
                 if self.LOCAL_VAR_LINE_MATCHER.match(line):
                     self.local_vars += line
                 
-                x = self.CURRENT_LINE_MATCHER.match(line)
-                print "found current line"
-                self.current_line = x.groups()
+                
+                # x = self.CURRENT_LINE_MATCHER.match(line)
+                # print "found current line"
+                # self.current_line = x.groups()
         finally:
             infile.close()
