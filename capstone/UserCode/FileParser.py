@@ -3,8 +3,8 @@ class FileParser:
     #import re
 
     LOCAL_VAR_LINE_MATCHER = re.compile(r'^\{(.*)\}$')
-    CURRENT_LINE_MATCHER = re.compile(r'(\d)+\s+->')
-    local_vars = None
+    CURRENT_LINE_MATCHER = re.compile(r'^\{(.*)\}$')
+    local_vars = ''
     current_line = None
 
     def __init__(self, filename):
@@ -24,9 +24,10 @@ class FileParser:
             for line in infile:
                 #print line
                 if self.LOCAL_VAR_LINE_MATCHER.match(line):
-                    this.local_vars += line
-
-                if self.CURRENT_LINE_MATCHER.match(line):
-                    current_line = self.CURRENT_LINE_MATCHER.groups(0)
+                    self.local_vars += line
+                
+                x = self.CURRENT_LINE_MATCHER.match(line)
+                print "found current line"
+                self.current_line = x.groups()
         finally:
             infile.close()
