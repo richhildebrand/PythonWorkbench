@@ -1,7 +1,5 @@
 ﻿import re
 class FileParser:
-    #import re
-
     LOCAL_VAR_LINE_MATCHER = re.compile(r'^\{(.*)\}$')
     CURRENT_LINE_MATCHER = re.compile(r'^\{(.*)\}$')
     local_vars = ''
@@ -26,9 +24,9 @@ class FileParser:
                 if self.LOCAL_VAR_LINE_MATCHER.match(line):
                     self.local_vars += line
                 
-                
-                # x = self.CURRENT_LINE_MATCHER.match(line)
-                # print "found current line"
-                # self.current_line = x.groups()
+                isLineToExecute = self.CURRENT_LINE_MATCHER.match(line)
+                if isLineToExecute:
+                     print "found current line"
+                     self.current_line = isLineToExecute.group()
         finally:
             infile.close()
