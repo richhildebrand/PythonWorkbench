@@ -1,11 +1,11 @@
-import re
+﻿import re
 class FileParser:
     #import re
 
-        LOCAL_VAR_LINE_MATCHER = re.compile(r'^\{(.*)\}$')
-        CURRENT_LINE_MATCHER = re.compile(r'(\d)+\s+->')
-        local_vars = None
-        current_line = None
+    LOCAL_VAR_LINE_MATCHER = re.compile(r'^\{(.*)\}$')
+    CURRENT_LINE_MATCHER = re.compile(r'(\d)+\s+->')
+    local_vars = None
+    current_line = None
 
     def __init__(self, filename):
         self.parse_file(filename)
