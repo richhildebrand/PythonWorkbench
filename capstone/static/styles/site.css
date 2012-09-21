@@ -31,6 +31,13 @@ img {
         text-decoration: underline;
         margin-bottom: 10px;
 }
+#MainArea #MethodCalls {
+	height: 150px;
+	width: 100%;
+	resize: none;
+	background-color: lightgray;
+}
+
 #PythonCode {
         width: 99%;
         height: 90%;
