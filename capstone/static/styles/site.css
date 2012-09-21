@@ -32,20 +32,26 @@ img {
         margin-bottom: 10px;
 }
 #MainArea #MethodCalls {
-	height: 150px;
-	width: 100%;
-	resize: none;
-	background-color: lightgray;
+        width: 99%;
+        height: 20%;
+        font-family: 'Oxygen Mono', sans-serif;
+        border: 3px inset #CCC;
+        border-top: none;
+        float: left;
+        resize: none;
+        overflow:auto;
 }
 
 #PythonCode {
         width: 99%;
-        height: 90%;
+        height: 70%;
         font-family: 'Oxygen Mono', sans-serif;
         border: 3px inset #CCC;
+        border-bottom: none;
         float: left;
         resize: none;
         overflow:auto;
+
 }
 #ResultData {
         width: 99%;
