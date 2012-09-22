@@ -72,3 +72,31 @@
 	});
 
 </script>
+
+<script type="text/javascript">
+	/*$(document).ready(function() {
+		$('body').hide().fadeIn(3000);
+      });*/
+	
+	$(window).bind('load resize', function(e){
+  		if (e.type === 'resize'){
+   		 	$('.drop_shadow_layer').remove();
+  		}
+
+		$('.shadow').each(function(){
+  
+	  	$('<div class="drop_shadow_layer">').appendTo($('body')).css({
+			position: 'absolute',
+			width: $(this).width() + 'px',
+			height: $(this).height() + 'px',
+			backgroundColor: '#353535',
+			zIndex: -5000,
+			top: ($(this).offset().top + 5) + 'px',
+			left: ($(this).offset().left + 5) + 'px'
+	  });
+	  
+	});
+
+});
+	
+</script>
