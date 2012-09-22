@@ -1,7 +1,7 @@
 {% if exerciseList %}
     <ul>
     {% for exercise in exerciseList %}
-        <li><a href="/Exercise/displayExercises/{{ poll.id }}/">{{ Exercise.name }}</a></li>
+        <li>{{ exercise.name }}</li>
     {% endfor %}
     </ul>
 {% else %}

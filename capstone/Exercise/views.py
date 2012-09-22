@@ -6,9 +6,11 @@ def displayExercises(request):
 	print "inside displayExercises"
 	try:
 		from capstone.Exercise.models import Exercise
-		latest_poll_list = Exercise.objects.all().order_by('-pub_date')[:5]
+		exerciseList = Exercise.objects.all()
 		t = loader.get_template('exerciseView.html')
+		print "before declaring exerciseList"
 		c = Context({'exerciseList': exerciseList })
+		print "after declaring exerciseList"
 		return HttpResponse(t.render(c))
 	except Exception, e:
 		return HttpResponse(e)
