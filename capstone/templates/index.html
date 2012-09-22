@@ -7,7 +7,7 @@
 
 <div id="MainArea">
         <p>Enter your Python snippet below or select an example.<br/>
-           <a>Simple Example</a> or <a>Method Example</a> or <a>Stolen Example</a>
+           <a>Simple Example</a> or <a>Method Example</a> or <a>Stolen Example</a> or <button id="DisplayExercises">Choose an Exercise</button>
         </p>
         <div class="PythonCodeWrap">
                 <input id="startDebugging" type="button" value="Start Debugging">
@@ -22,6 +22,16 @@
 </div>
 
 <script type="text/javascript">
+	$('#DisplayExercises').click(function() {
+		$.get('/Exercise/displayExercises/', function(data) {
+			displayExercises(data)
+ 		});
+	});
+
+	var displayExercises = function(data) {
+		$('#ResultData').text(data);
+	}
+
 	$('#startDebugging').click(function() {
 		pythonCode = { pythonCode: $('#PythonCode').val() + '\n' + $('#MethodCalls').val() };
 		$.get('/student/startDebugging', pythonCode, function(data) {
