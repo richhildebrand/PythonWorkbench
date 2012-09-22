@@ -15,5 +15,5 @@ urlpatterns = patterns('',
     url(r'^student/$', 'capstone.student.views.index'),
     url(r'^student/startDebugging/$', 'capstone.student.views.startDebugging'),
     url(r'^student/takeStep/$', 'capstone.student.views.takeStep'),
-    url(r'^Exercise/displayExercises/$', 'capstone.Exercise.views.displayExercises'),
+    url(r'^Exercise/displayAll/$', 'capstone.Exercise.views.displayAll'),
 )
