@@ -27,6 +27,6 @@ class FileParser:
                 isLineToExecute = self.CURRENT_LINE_MATCHER.match(line)
                 if isLineToExecute:
                      #print "found current line"
-                     self.current_line = isLineToExecute.group()
+                     self.current_line = isLineToExecute.group(1)
         finally:
             infile.close()
