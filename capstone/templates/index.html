@@ -1,9 +1,26 @@
 <LINK href="{{ STATIC_URL }}styles/site.css" rel="stylesheet" type="text/css">
+<LINK href="{{ STATIC_URL }}styles/jqueryui/jquery.ui.all.css" rel="stylesheet" type="text/css">
 <link href='http://fonts.googleapis.com/css?family=Oxygen+Mono' rel='stylesheet' type='text/css'>
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.min.js"></script>
 
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ui.core.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ui.mouse.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ui.position.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ui.dialog.js"></script>
 
 <img src="{{ STATIC_URL }}styles/images/python-instruc-logo.png" class="shadow" width="376" height="148" alt="logo">
+
+<script>
+	$(function() {
+		$( "#dialog" ).dialog();
+	});
+	</script>
+
+
+<div id="dialog" title="Basic dialog">
+	<p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+</div>
 
 <div id="MainArea">
         <p>Enter your Python snippet below or select an example.<br/>
