@@ -12,8 +12,7 @@
 
 <img src="{{ STATIC_URL }}styles/images/python-instruc-logo.png" class="shadow" width="376" height="148" alt="logo">
 
-<div id="Exercises" title="Exercises">
-</div>
+<div id="Exercises" title="Exercises"></div>
 
 <div id="MainArea">
         <p>Enter your Python snippet below or select an example.<br/>
@@ -39,7 +38,7 @@
 	});
 
 	var displayExercises = function(data) {
-		$('#Exercises').text(data);
+		$('#Exercises').html(data);
 		$('#Exercises').dialog();
 		
 	}
