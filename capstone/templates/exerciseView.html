@@ -1,9 +1,36 @@
 {% if exerciseList %}
     <ul>
     {% for exercise in exerciseList %}
-        <li><a href="/Exercise/load/{{ exercise.id }}/">{{ exercise.name }}</a></li>
+        <li class='exercise' data-exerciseid='{{ exercise.id }}'>{{ exercise.name }}</li>
     {% endfor %}
     </ul>
 {% else %}
     <p>No exercises are available.</p>
 {% endif %}
+
+<script type="text/javascript">
+	$('.exercise').click(function() {
+		id = $(this).data('exerciseid');
+		$.get('/Exercise/load/' + id, function(exercise) {
+			loadExercise(exercise);
+ 		});
+	});
+
+	var loadExercise = 	function(exercise) {
+		methodBody = exercise.MethodBody
+		methodCalls = exercise.MethodCalls
+
+		methodCallText = "";
+		for (var method in methodCalls) {
+			methodCallText += method.toString();
+			methodCallText += methodCalls[method];
+			methodCallText += "\n"
+		};
+
+		$('#PythonCode').text(methodBody);
+		$('#MethodCalls').text(methodCallText);
+
+		$('#Exercises').dialog('close')
+	};
+
+</script>
