@@ -17,14 +17,20 @@
 	});
 
 	var loadExercise = 	function(exercise) {
-		methodBody = exercise.MethodBody
-		methodCalls = exercise.MethodCalls
+		var methodBody = exercise.MethodBody
+		var methodCalls = exercise.MethodCalls
 
-		methodCallText = "";
+		var methodCallText = "";
+		var index = 0;
+
+		var methodResult = function() {
+			index = index + 1;
+			return 'unitTestResult' + index + ' = ';
+		};
+
 		for (var method in methodCalls) {
-			methodCallText += method.toString();
-			methodCallText += methodCalls[method];
-			methodCallText += "\n"
+			var methodAnswer = ' #expected: ' + methodCalls[method]
+			methodCallText += methodResult() + method.toString() + methodAnswer + "\n";
 		};
 
 		$('#PythonCode').text(methodBody);
@@ -32,5 +38,7 @@
 
 		$('#Exercises').dialog('close')
 	};
+
+
 
 </script>
