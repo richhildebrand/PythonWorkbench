@@ -16,9 +16,10 @@ def startDebugging(request):
 	sessionIdForAnonymousUser = 'AnonymousUserSession' + request.session.session_key
 	userManager.createUserCodeManager(sessionIdForAnonymousUser, userCode);
 	stepResult = userManager.executeStepInUserCode(sessionIdForAnonymousUser)
+	testResults = userManager.runTestsOnUserCode(sessionIdForAnonymousUser);
 	return HttpResponse(json.dumps(stepResult), mimetype="application/json")
 
 def takeStep(request):
 	sessionIdForAnonymousUser = 'AnonymousUserSession' + request.session.session_key
 	stepResult = userManager.executeStepInUserCode(sessionIdForAnonymousUser)
-	return HttpResponse(json.dumps(stepResult), mimetype="application/json")
+	return HttpResponse(json.dumps(stepResult), mimetype="application/json")	
