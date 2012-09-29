@@ -17,13 +17,13 @@ $('#startDebugging').click(function() {
 	pythonCode = { pythonCode: $('#PythonCode').val() + '\n' + $('#MethodCalls').val() };
 	$.get('/student/startDebugging', pythonCode, function(data) {
 		displayResultData(data)
-		});
+	});
 });
 
 $("#TakeStep").click(function() {
   $.get('/student/takeStep', function(data) {
 		displayResultData(data)
-		});
+	});
 });
 
 var displayResultData = function(data) {
