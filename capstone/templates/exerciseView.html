@@ -33,12 +33,7 @@
 			methodCallText += methodResult() + method.toString() + methodAnswer + "\n";
 		};
 
-		$('#PythonCode').text(methodBody);
-		$('#MethodCalls').text(methodCallText);
-
+		loadAllData(methodBody, methodCallText);
 		$('#Exercises').dialog('close')
 	};
-
-
-
 </script>
