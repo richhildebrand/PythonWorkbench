@@ -18,7 +18,9 @@ $('.exercise').click(function() {
 });
 
 var loadExercise = 	function(exercise) {
+	var methodBody = exercise.MethodBody
 	var methodCalls = exercise.MethodCalls
+
 	var methodCallText = "";
 	var index = 0;
 
@@ -32,6 +34,6 @@ var loadExercise = 	function(exercise) {
 		methodCallText += methodResult() + method.toString() + methodAnswer + "\n";
 	};
 
-	loadAllData(exercise.methodBody, methodCallText);
+	loadAllData(methodBody, methodCallText);
 	$('#Exercises').dialog('close')
 };

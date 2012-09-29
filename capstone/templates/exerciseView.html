@@ -15,25 +15,4 @@
 			loadExercise(exercise);
  		});
 	});
-
-	var loadExercise = 	function(exercise) {
-		var methodBody = exercise.MethodBody
-		var methodCalls = exercise.MethodCalls
-
-		var methodCallText = "";
-		var index = 0;
-
-		var methodResult = function() {
-			index = index + 1;
-			return 'unitTestResult' + index + ' = ';
-		};
-
-		for (var method in methodCalls) {
-			var methodAnswer = ' #expected: ' + methodCalls[method]
-			methodCallText += methodResult() + method.toString() + methodAnswer + "\n";
-		};
-
-		loadAllData(methodBody, methodCallText);
-		$('#Exercises').dialog('close')
-	};
 </script>
