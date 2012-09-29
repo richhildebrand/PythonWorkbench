@@ -8,9 +8,9 @@ $('#ClearAll').click(function() {
 });
 
 var loadAllData = function(methodBody, methodCalls) {
-	$('#ResultData').text("");
-	$('#PythonCode').text(methodBody);
-	$('#MethodCalls').text(methodCalls);
+	$('#ResultData').val("");
+	$('#PythonCode').val(methodBody);
+	$('#MethodCalls').val(methodCalls);
 };
 
 $('#startDebugging').click(function() {
@@ -27,6 +27,6 @@ $("#TakeStep").click(function() {
 });
 
 var displayResultData = function(data) {
-	$('#ResultData').text(data.exception + data.localVars + data.lineNumber);
+	$('#ResultData').val(data.exception + data.localVars + data.lineNumber);
 };
 
