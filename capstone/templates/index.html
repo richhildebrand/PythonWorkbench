@@ -1,6 +1,6 @@
-<LINK href="{{ STATIC_URL }}styles/site.css" rel="stylesheet" type="text/css">
-<LINK href="{{ STATIC_URL }}styles/jqueryUI/jquery.ui.all.css" rel="stylesheet" type="text/css">
-<LINK href="{{ STATIC_URL }}styles/jqueryUI/jquery-ui-1.8.23.custom.css" rel="stylesheet" type="text/css">
+<link href="{{ STATIC_URL }}styles/site.css" rel="stylesheet" type="text/css">
+<link href="{{ STATIC_URL }}styles/jqueryUI/jquery.ui.all.css" rel="stylesheet" type="text/css">
+<link href="{{ STATIC_URL }}styles/jqueryUI/jquery-ui-1.8.23.custom.css" rel="stylesheet" type="text/css">
 <link href='http://fonts.googleapis.com/css?family=Oxygen+Mono' rel='stylesheet' type='text/css'>
 
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.min.js"></script>
@@ -18,7 +18,7 @@
         <p>Enter your Python snippet below or select an example.<br/>
            <a id="ClearAll">Clean Slate</a> or 
            <a id="SimpleDemo">Simple Example</a> or 
-           <a id="DisplayExercises">Choose an Exercise</a>
+           <a id="DisplayAllExercises">Choose an Exercise</a>
         </p>
         <div class="PythonCodeWrap">
                 <input id="startDebugging" type="button" value="Start Debugging">
@@ -32,65 +32,8 @@
         </div>
 </div>
 
-<script type="text/javascript">
-	$('#DisplayExercises').click(function() {
-		$.get('/Exercise/displayAll/', function(data) {
-			displayExercises(data)
- 		});
-	});
-
-	var displayExercises = function(data) {
-		$('#Exercises').html(data);
-		$('#Exercises').dialog();
-		
-	}
-
-	$('#SimpleDemo').click(function() {
-		methodBody = 'a = 3\nb = 4\nc = a + b\nd = a + b * c';
-		methodCalls = ""
-		$('#PythonCode').text(methodBody);
-		$('#MethodCalls').text(methodCalls);
-	});
-
-	$('#ClearAll').click(function() {
-		methodBody = ""
-		methodCalls = ""
-		$('#PythonCode').text(methodBody);
-		$('#MethodCalls').text(methodCalls);
-	});
-
-	$('#startDebugging').click(function() {
-		pythonCode = { pythonCode: $('#PythonCode').val() + '\n' + $('#MethodCalls').val() };
-		$.get('/student/startDebugging', pythonCode, function(data) {
-			displayResultData(data)
- 		});
-	});
-
-	$("#TakeStep").click(function() {
-	  $.get('/student/takeStep', function(data) {
-			displayResultData(data)
- 		});
-	});
-
-	var displayResultData = function(data) {
-		$('#ResultData').text(data.exception + data.localVars + data.lineNumber);
-	}
-</script>
-
-<script type="text/javascript">
-	
-	$('#MainArea a').click(function() {
-		var forMainArea = [];
-		var forMethodArea = [];
-
-		
-
-		var exampleToUse = $(this).text()	
-		$('#PythonCode').text(forMainArea[exampleToUse]);
-		$('#MethodCalls').text(forMethodArea[exampleToUse]);
-	});
-
-</script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/exerciseFunctions.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/debuggerFunctions.js"></script>
 
 <script type="text/javascript">
 	$(window).bind('load resize', function(e){
@@ -113,5 +56,4 @@
 	});
 
 });
-	
 </script>
