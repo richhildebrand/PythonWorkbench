@@ -1,5 +1,5 @@
 $('#SimpleDemo').click(function() {
-	methodBody = 'a = 3\nb = 4\nc = a + b\nd = a + b * c';
+	var methodBody = 'a = 3\nb = 4\nc = a + b\nd = a + b * c';
 	loadAllData(methodBody, "");
 });
 
@@ -14,7 +14,7 @@ var loadAllData = function(methodBody, methodCalls) {
 };
 
 $('#startDebugging').click(function() {
-	pythonCode = { pythonCode: $('#PythonCode').val() + '\n' + $('#MethodCalls').val() };
+	var pythonCode = { pythonCode: $('#PythonCode').val() + '\n' + $('#MethodCalls').val() };
 	$.get('/student/startDebugging', pythonCode, function(data) {
 		displayResultData(data)
 	});

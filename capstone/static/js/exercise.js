@@ -11,7 +11,7 @@ var displayExercises = function(data) {
 };
 
 $('.exercise').click(function() {
-	id = $(this).data('exerciseid');
+	var id = $(this).data('exerciseid');
 	$.get('/Exercise/load/' + id, function(exercise) {
 		loadExercise(exercise);
 	});
