@@ -29,4 +29,3 @@ $("#TakeStep").click(function() {
 var displayResultData = function(data) {
 	$('#ResultData').val(data.exception + data.localVars + data.lineNumber);
 };
-
