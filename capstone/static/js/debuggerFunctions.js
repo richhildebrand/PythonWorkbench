@@ -1,22 +1,17 @@
-$('#DisplayExercises').click(function() {
-	$.get('/Exercise/displayAll/', function(data) {
-		displayExercises(data)
-		});
-});
-
 $('#SimpleDemo').click(function() {
 	methodBody = 'a = 3\nb = 4\nc = a + b\nd = a + b * c';
-	methodCalls = ""
-	$('#PythonCode').text(methodBody);
-	$('#MethodCalls').text(methodCalls);
+	loadAllData(methodBody, "");
 });
 
 $('#ClearAll').click(function() {
-	methodBody = ""
-	methodCalls = ""
+	loadAllData("", "");
+});
+
+var loadAllData = function(methodBody, methodCalls) {
+	$('#ResultData').text("");
 	$('#PythonCode').text(methodBody);
 	$('#MethodCalls').text(methodCalls);
-});
+};
 
 $('#startDebugging').click(function() {
 	pythonCode = { pythonCode: $('#PythonCode').val() + '\n' + $('#MethodCalls').val() };
@@ -33,4 +28,5 @@ $("#TakeStep").click(function() {
 
 var displayResultData = function(data) {
 	$('#ResultData').text(data.exception + data.localVars + data.lineNumber);
-};	
+};
+
