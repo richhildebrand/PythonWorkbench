@@ -9,21 +9,28 @@ class UserCodeManager:
 	pythonFileBuilder = None
 	userCodeFilePath = None
 	stepNumber = None
+	unitTests = None
 	userCode = None
 	userID = None
 	userCodeException = None
 
-	def __init__(self, userID, userCode):
+	def __init__(self, userID, userCode, unitTests):
 		self.stepNumber = 0
 		self.userID = userID
 		self.userCode = userCode
+		self.unitTests = unitTests
 		self.pythonFileBuilder = PythonFileBuilder.PythonFileBuilder()
-		self.userCodeFilePath =	self.pythonFileBuilder.buildFile(self.userCode, self.userID)
+		self.userCodeFilePath =	self.pythonFileBuilder.buildFile(userCode + '\n' + unitTests, userID)
 		
 	def executeStepInUserCode(self):
 		self.stepNumber = self.stepNumber + 1
 		self.__runFile()
 		return self.__resultOfStepInUserCode()
+
+	def runTestsOnUserCode(self):
+		TestFileBuilder = TestFileBuilder.TestFileBuilder()
+		userTestFilePath =	TestFileBuilder.buildFile(self.userCode, self.unitTests, self.userID)
+		testResults = TestFileBuilder.getResults()
 
 	def __runFile(self):
 		PythonLib.ensureDirectoryExists(self.USER_FILE_PATH)

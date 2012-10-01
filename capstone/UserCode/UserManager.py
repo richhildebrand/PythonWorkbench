@@ -6,8 +6,8 @@ class UserManager:
 	def __init__(self):
 		self.userCodeManagers = {}
 
-	def createUserCodeManager(self, user, code):
-			self.userCodeManagers[user] = UserCodeManager.UserCodeManager(user, code)
+	def createUserCodeManager(self, user, userCode, unitTests):
+			self.userCodeManagers[user] = UserCodeManager.UserCodeManager(user, userCode, unitTests)
 
 	def executeStepInUserCode(self, user):
 		return self.userCodeManagers[user].executeStepInUserCode()

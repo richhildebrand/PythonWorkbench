@@ -14,7 +14,7 @@ var loadAllData = function(methodBody, methodCalls) {
 };
 
 $('#startDebugging').click(function() {
-	var pythonCode = { pythonCode: $('#PythonCode').val() + '\n' + $('#MethodCalls').val() };
+	var pythonCode = { pythonCode: $('#PythonCode').val(), unitTests: $('#MethodCalls').val() };
 	$.get('/student/startDebugging', pythonCode, function(data) {
 		displayResultData(data)
 	});

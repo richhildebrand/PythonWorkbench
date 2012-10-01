@@ -9,14 +9,14 @@ class TestFileBuilder
 		self.testFilePath = userID + 'TestFile'
 
 	def getResults(self):
-		#methodCallResults = {}
-		#for method in self.methodCalls:
-			#self.__buildFile(self.methodBody, method)
-			#try:
-				#methodCallResults[method] = self.__runTestFile
-			#except:
-				#methodCallResults[method] = e
-		#return methodCallResults
+		methodCallResults = {}
+		for method in self.methodCalls:
+			self.__buildFile(self.methodBody, method)
+			try:
+				methodCallResults[method] = self.__runTestFile
+			except:
+				methodCallResults[method] = e
+		return methodCallResults
 
 	def __buildFile(self, methodBody, methodCall):
 		code = self.methodBody
@@ -26,7 +26,6 @@ class TestFileBuilder
 	def __runTestFile(self):
 		#iWish = 'import ' + self.testFilePath
 		
-
 	def __createUserCodeFile(self, code, filePrefix):
 		try:
 			codeFile = open(self.testFilePath, 'w+')

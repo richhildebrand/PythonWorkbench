@@ -12,9 +12,10 @@ def index(request):
 
 def startDebugging(request):
 	userCode = request.GET['pythonCode']
+	unitTests = request.GET['unitTests']
 	request.session.save() 
 	sessionIdForAnonymousUser = 'AnonymousUserSession' + request.session.session_key
-	userManager.createUserCodeManager(sessionIdForAnonymousUser, userCode);
+	userManager.createUserCodeManager(sessionIdForAnonymousUser, userCode, unitTests);
 	stepResult = userManager.executeStepInUserCode(sessionIdForAnonymousUser)
 	testResults = userManager.runTestsOnUserCode(sessionIdForAnonymousUser);
 	return HttpResponse(json.dumps(stepResult), mimetype="application/json")
