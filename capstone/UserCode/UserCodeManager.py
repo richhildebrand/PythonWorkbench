@@ -55,5 +55,4 @@ class UserCodeManager:
 		userStepResult['exception'] = self.userCodeException
 		userStepResult['localVars'] = fileParser.get_local_vars()
 		userStepResult['lineNumber'] = fileParser.get_current_line()
-
 		return userStepResult

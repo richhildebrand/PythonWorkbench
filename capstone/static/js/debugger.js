@@ -28,4 +28,13 @@ $("#TakeStep").click(function() {
 
 var displayResultData = function(data) {
 	$('#ResultData').val(data.exception + data.localVars + data.lineNumber);
+	var testResults = data.testResults;
+	if (testResults) {
+		var fillTestAreaWith = "";
+		for (testResult in testResults) {
+			 fillTestAreaWith += testResult.toString() + ' evaluated to: '
+			 fillTestAreaWith += testResults[testResult] + '\n'
+		};
+		$('#ResultData').val(fillTestAreaWith);
+	};
 };
