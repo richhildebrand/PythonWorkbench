@@ -30,7 +30,7 @@ class UserCodeManager:
 
 	def runTestsOnUserCode(self):
 		testRunner = TestRunner.TestRunner(self.userID, self.userCode, self.unitTests)
-		testResults = testRunner.getResults()
+		return testRunner.getResults()
 
 	def __runFile(self):
 		PythonLib.ensureDirectoryExists(self.USER_FILE_PATH)

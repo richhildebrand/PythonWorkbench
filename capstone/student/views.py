@@ -18,6 +18,7 @@ def startDebugging(request):
 	userManager.createUserCodeManager(sessionIdForAnonymousUser, userCode, unitTests);
 	stepResult = userManager.executeStepInUserCode(sessionIdForAnonymousUser)
 	testResults = userManager.runTestsOnUserCode(sessionIdForAnonymousUser);
+	stepResult['testResults'] = testResults
 	return HttpResponse(json.dumps(stepResult), mimetype="application/json")
 
 def takeStep(request):
