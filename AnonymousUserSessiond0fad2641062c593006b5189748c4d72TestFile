@@ -1,5 +1,0 @@
-def sleep_in(weekday, vacation):
-   def painTown(a, b):
-      return a + b
-   return painTown(1, 7)
-theResultOfThisUnitTestIsEqualTo = sleep_in(False, True)

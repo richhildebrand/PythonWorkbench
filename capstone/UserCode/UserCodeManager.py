@@ -1,6 +1,6 @@
 import io, pdb
 import PythonFileBuilder
-import TestFileBuilder
+import TestRunner
 import FileParser
 from capstone.PythonLib import PythonLib
 from collections import namedtuple
@@ -29,11 +29,8 @@ class UserCodeManager:
 		return self.__resultOfStepInUserCode()
 
 	def runTestsOnUserCode(self):
-		try:
-			testFileBuilder = TestFileBuilder.TestFileBuilder(self.userID, self.userCode, self.unitTests)
-			testResults = testFileBuilder.getResults()
-		except Exception, e:
-			print e
+		testRunner = TestRunner.TestRunner(self.userID, self.userCode, self.unitTests)
+		testResults = testRunner.getResults()
 
 	def __runFile(self):
 		PythonLib.ensureDirectoryExists(self.USER_FILE_PATH)
