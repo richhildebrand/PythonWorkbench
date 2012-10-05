@@ -32,8 +32,8 @@ var displayResultData = function(data) {
 	if (testResults) {
 		var fillTestAreaWith = "";
 		for (testResult in testResults) {
-			 fillTestAreaWith += testResult.toString() + ' evaluated to: '
-			 fillTestAreaWith += testResults[testResult] + '\n'
+			 $('#TestResultGrid ol.testColumn').append('<li>' + testResult.toString() + '</li>');
+			 $('#TestResultGrid ol.actualResult').append('<li>' + testResults[testResult] + '</li>');
 		};
 		$('#ResultData').text(fillTestAreaWith);
 	};
