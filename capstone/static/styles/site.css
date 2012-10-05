@@ -71,6 +71,11 @@ img {
         background: white;
 }
 
+#TestResultGrid ol {
+        width: 32%;
+        float: left;
+}
+
 .PythonCodeWrap {
         width: 46%;
         height: 90%;
