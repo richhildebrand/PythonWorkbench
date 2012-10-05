@@ -27,7 +27,7 @@ $("#TakeStep").click(function() {
 });
 
 var displayResultData = function(data) {
-	$('#ResultData').val(data.exception + data.localVars + data.lineNumber);
+	$('#ResultData').text(data.exception + data.localVars + data.lineNumber);
 	var testResults = data.testResults;
 	if (testResults) {
 		var fillTestAreaWith = "";
@@ -35,6 +35,6 @@ var displayResultData = function(data) {
 			 fillTestAreaWith += testResult.toString() + ' evaluated to: '
 			 fillTestAreaWith += testResults[testResult] + '\n'
 		};
-		$('#ResultData').val(fillTestAreaWith);
+		$('#ResultData').text(fillTestAreaWith);
 	};
 };

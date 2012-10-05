@@ -55,16 +55,25 @@ img {
 }
 #ResultData {
         width: 99%;
-        height: 90%;
+        height: 46%;
         border: 3px inset #CCC;
         float: left;
         resize: none;
         overflow: auto;
+        background: white;
 }
+
+#TestResultGrid {
+        margin-top: 2%;
+        border: 3px inset #CCC;
+        width: 99%;
+        float: left;
+        background: white;
+}
+
 .PythonCodeWrap {
         width: 46%;
         height: 90%;
-        /*border: 1px solid #000;*/
         margin-left: 3%;
         margin-right: 2%;
         margin-top: 2%;
@@ -73,7 +82,6 @@ img {
 .DebugResultWrap {
         width: 46%;
         height: 90%;
-        /*border: 1px solid #000;*/
         margin-right: 2%;
         margin-top: 2%;
         float: left;
