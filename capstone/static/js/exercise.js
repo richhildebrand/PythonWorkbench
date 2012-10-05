@@ -31,7 +31,6 @@ var loadExercise = 	function(exercise) {
 
 	for (var method in methodCalls) {
 		var methodAnswer = ' #expected: ' + methodCalls[method]
-		//methodCallText += methodResult() + method.toString() + methodAnswer + "\n";
 		methodCallText += method.toString() + "\n";
 	};
 
