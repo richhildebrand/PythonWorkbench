@@ -7,11 +7,11 @@ $('#ClearAll').click(function() {
 	loadAllData("", "");
 });
 
-var loadAllData = function(methodBody, unitTests, expectedResults) {
+var loadAllData = function(methodBody, unitTestsText, unitTests) {
 	$('#ResultData').val("");
 	$('#PythonCode').val(methodBody);
-	$('#MethodCalls').val(unitTests);
-	displayListData($('#TestResultGrid ol.expectedResultColumn'), expectedResults)
+	$('#MethodCalls').val(unitTestsText);
+	loadTestGridData($('#TestResultGrid ol.expectedResultColumn'), unitTests)
 };
 
 $('#startDebugging').click(function() {
@@ -42,6 +42,16 @@ var displayListData = function(target, dataSet) {
 	if (dataSet) {
 		for (data in dataSet) {
 			 target.append('<li>' + dataSet[data] + '</li>');
+		};
+	};
+};
+
+
+var loadTestGridData = function(target, tests) {
+	if (tests) {
+		for (test in tests) {
+			 $('#TestResultGrid ol.testColumn').append('<li>' + test.toString() + '</li>');
+			 target.append('<li>' + tests[test] + '</li>');
 		};
 	};
 };

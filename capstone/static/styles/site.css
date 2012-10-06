@@ -71,7 +71,7 @@ img {
         background: white;
 }
 
-#TestResultGrid ol {
+#TestResultGrid ol, #TestResultGrid span {
         list-style-type: none;
         width: 32%;
         float: left;
