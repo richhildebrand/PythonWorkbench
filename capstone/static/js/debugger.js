@@ -29,23 +29,8 @@ $("#TakeStep").click(function() {
 
 var displayResultData = function(data) {
 	$('#ResultData').text(data.exception + data.localVars + data.lineNumber);
-	var testResults = data.testResults;
-	if (testResults) {
-		for (testResult in testResults) {
-			 $('#TestResultGrid ol.testColumn').append('<li>' + testResult.toString() + '</li>');
-			 $('#TestResultGrid ol.actualResultColumn').append('<li>' + testResults[testResult] + '</li>');
-		};
-	};
+	loadTestGridData($('#TestResultGrid ol.actualResultColumn'), data.testResults);
 };
-
-var displayListData = function(target, dataSet) {
-	if (dataSet) {
-		for (data in dataSet) {
-			 target.append('<li>' + dataSet[data] + '</li>');
-		};
-	};
-};
-
 
 var loadTestGridData = function(target, tests) {
 	if (tests) {
