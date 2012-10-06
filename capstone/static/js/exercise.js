@@ -30,10 +30,9 @@ var loadExercise = 	function(exercise) {
 	};
 
 	for (var method in methodCalls) {
-		var methodAnswer = ' #expected: ' + methodCalls[method]
 		methodCallText += method.toString() + "\n";
 	};
 
-	loadAllData(methodBody, methodCallText);
+	loadAllData(methodBody, methodCallText, methodCalls);
 	$('#Exercises').dialog('close')
 };

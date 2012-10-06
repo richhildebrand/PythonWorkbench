@@ -7,10 +7,11 @@ $('#ClearAll').click(function() {
 	loadAllData("", "");
 });
 
-var loadAllData = function(methodBody, unitTests) {
+var loadAllData = function(methodBody, unitTests, expectedResults) {
 	$('#ResultData').val("");
 	$('#PythonCode').val(methodBody);
 	$('#MethodCalls').val(unitTests);
+	displayListData($('#TestResultGrid ol.expectedResultColumn'), expectedResults)
 };
 
 $('#startDebugging').click(function() {
@@ -37,6 +38,10 @@ var displayResultData = function(data) {
 	};
 };
 
-var displayTestGridColumnData = function(target, data) {
-
-}
+var displayListData = function(target, dataSet) {
+	if (dataSet) {
+		for (data in dataSet) {
+			 target.append('<li>' + dataSet[data] + '</li>');
+		};
+	};
+};
