@@ -7,10 +7,10 @@ $('#ClearAll').click(function() {
 	loadAllData("", "");
 });
 
-var loadAllData = function(methodBody, methodCalls) {
+var loadAllData = function(methodBody, unitTests) {
 	$('#ResultData').val("");
 	$('#PythonCode').val(methodBody);
-	$('#MethodCalls').val(methodCalls);
+	$('#MethodCalls').val(unitTests);
 };
 
 $('#startDebugging').click(function() {
@@ -30,11 +30,13 @@ var displayResultData = function(data) {
 	$('#ResultData').text(data.exception + data.localVars + data.lineNumber);
 	var testResults = data.testResults;
 	if (testResults) {
-		var fillTestAreaWith = "";
 		for (testResult in testResults) {
 			 $('#TestResultGrid ol.testColumn').append('<li>' + testResult.toString() + '</li>');
-			 $('#TestResultGrid ol.actualResult').append('<li>' + testResults[testResult] + '</li>');
+			 $('#TestResultGrid ol.actualResultColumn').append('<li>' + testResults[testResult] + '</li>');
 		};
-		$('#ResultData').text(fillTestAreaWith);
 	};
 };
+
+var displayTestGridColumnData = function(target, data) {
+
+}
