@@ -10,7 +10,7 @@ var workbenchViewModel  = new kendo.data.ObservableObject({
 	this.reset()
 	unitTests = this.get("UnitTests"); 
 		for (var test in tests) {
-			unitTests[test] = new UnitTest(tests[test]);
+			unitTests.push(new UnitTest(test, tests[test]));
 		}
 	},
 
@@ -26,7 +26,7 @@ var workbenchViewModel  = new kendo.data.ObservableObject({
 		if (unitTests) {
 			$('#TestResultGrid ol').empty();
 			for (var unitTest in unitTests) {
-				$('#TestResultGrid ol.testColumn').append('<li>' + unitTest.toString() + '</li>');
+				$('#TestResultGrid ol.testColumn').append('<li>' + unitTests[unitTest].name + '</li>');
 				$('#TestResultGrid ol.expectedResultColumn').append('<li>' +unitTests[unitTest].expectedResult + '</li>');
 				$('#TestResultGrid ol.actualResultColumn').append('<li>' + unitTests[unitTest].actualResult + '</li>');
 			}
