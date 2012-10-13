@@ -18,3 +18,13 @@ var loadActualResults = function(tests) {
 	} 
 };
 
+var loadTestGridData = function() {
+	if (UnitTests) {
+		$('#TestResultGrid ol').empty();
+		for (var unitTest in UnitTests) {
+			$('#TestResultGrid ol.testColumn').append('<li>' + unitTest.toString() + '</li>');
+			$('#TestResultGrid ol.expectedResultColumn').append('<li>' + UnitTests[unitTest].expectedResult + '</li>');
+			$('#TestResultGrid ol.actualResultColumn').append('<li>' + UnitTests[unitTest].actualResult + '</li>');
+		}
+	}
+};
