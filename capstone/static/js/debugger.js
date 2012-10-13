@@ -19,7 +19,7 @@ var clearAll = function() {
 var loadAllData = function(methodBody, unitTestsText, unitTests) {
 	$('#PythonCode').val(methodBody);
 	$('#MethodCalls').val(unitTestsText);
-	loadTestGridData()
+	workbenchViewModel.loadTestGridData()
 };
 
 $('#startDebugging').click(function() {

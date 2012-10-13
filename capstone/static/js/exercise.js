@@ -22,14 +22,12 @@ var loadExercise = 	function(exercise) {
 	var methodBody = exercise.MethodBody
 	var methodCalls = exercise.MethodCalls
 
-
-
 	var methodCallText = "";
 	for (var method in methodCalls) {
 		methodCallText += method.toString() + "\n";
 	};
 
-	loadExpectedResults(methodCalls);
+	workbenchViewModel.loadExpectedResults(methodCalls);
 	loadAllData(methodBody, methodCallText, methodCalls);
 	$('#Exercises').dialog('close')
 };
