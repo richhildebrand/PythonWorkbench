@@ -11,7 +11,7 @@ var loadAllData = function(methodBody, unitTestsText, unitTests) {
 	$('#ResultData').val("");
 	$('#PythonCode').val(methodBody);
 	$('#MethodCalls').val(unitTestsText);
-	loadTestGridData($('#TestResultGrid ol.expectedResultColumn'), unitTests)
+	loadTestGridData()
 };
 
 $('#startDebugging').click(function() {
@@ -29,14 +29,9 @@ $("#TakeStep").click(function() {
 
 var displayResultData = function(data) {
 	$('#ResultData').text(data.exception + data.localVars + data.lineNumber);
-	loadTestGridData($('#TestResultGrid ol.actualResultColumn'), data.testResults);
+	if (data.testResults) {
+		loadActualResults(data.testResults);
+		loadTestGridData();
+	}
 };
 
-var loadTestGridData = function(target, tests) {
-	if (tests) {
-		for (test in tests) {
-			 $('#TestResultGrid ol.testColumn').append('<li>' + test.toString() + '</li>');
-			 target.append('<li>' + tests[test] + '</li>');
-		};
-	};
-};

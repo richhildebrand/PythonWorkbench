@@ -21,18 +21,14 @@ var loadExercise = 	function(exercise) {
 	var methodBody = exercise.MethodBody
 	var methodCalls = exercise.MethodCalls
 
+
+
 	var methodCallText = "";
-	var index = 0;
-
-	var methodResult = function() {
-		index = index + 1;
-		return 'unitTestResult' + index + ' = ';
-	};
-
 	for (var method in methodCalls) {
 		methodCallText += method.toString() + "\n";
 	};
 
+	loadExpectedResults(methodCalls);
 	loadAllData(methodBody, methodCallText, methodCalls);
 	$('#Exercises').dialog('close')
 };
