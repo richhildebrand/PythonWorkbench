@@ -13,7 +13,7 @@ var clearAll = function() {
 	$('#MethodCalls').val("");
 	$('#ResultData').text("");
 	$('#TestResultGrid ol').empty();
-	UnitTests = new Array()
+	workbenchViewModel.reset()
 }
 
 var loadAllData = function(methodBody, unitTestsText, unitTests) {

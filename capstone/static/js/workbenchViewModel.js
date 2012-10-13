@@ -3,7 +3,9 @@ var workbenchViewModel  = new kendo.data.ObservableObject({
 
 	reset: function() {
 		var tests = this.get("UnitTests");
-		tests = new Array();
+		while (tests.length > 0) {
+			tests.pop();
+		}
 	},
 
 	loadExpectedResults: function(tests) {
