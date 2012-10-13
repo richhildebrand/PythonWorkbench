@@ -4,11 +4,16 @@ $('#SimpleDemo').click(function() {
 });
 
 $('#ClearAll').click(function() {
-	loadAllData("", "");
+	clearAll();
 });
 
+var clearAll = function() {
+	$('#TestResultGrid ol').empty();
+	$('#ResultData').text("");
+}
+
 var loadAllData = function(methodBody, unitTestsText, unitTests) {
-	$('#ResultData').val("");
+	clearAll();
 	$('#PythonCode').val(methodBody);
 	$('#MethodCalls').val(unitTestsText);
 	loadTestGridData()
@@ -34,4 +39,3 @@ var displayResultData = function(data) {
 		loadTestGridData();
 	}
 };
-
