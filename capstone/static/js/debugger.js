@@ -1,5 +1,6 @@
 $('#SimpleDemo').click(function() {
 	var methodBody = 'a = 3\nb = 4\nc = a + b\nd = a + b * c';
+	clearAll();
 	loadAllData(methodBody, "");
 });
 
@@ -8,12 +9,14 @@ $('#ClearAll').click(function() {
 });
 
 var clearAll = function() {
-	$('#TestResultGrid ol').empty();
+	$('#PythonCode').val("");
+	$('#MethodCalls').val("");
 	$('#ResultData').text("");
+	$('#TestResultGrid ol').empty();
+	UnitTests = new Array()
 }
 
 var loadAllData = function(methodBody, unitTestsText, unitTests) {
-	clearAll();
 	$('#PythonCode').val(methodBody);
 	$('#MethodCalls').val(unitTestsText);
 	loadTestGridData()

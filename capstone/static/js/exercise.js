@@ -18,6 +18,7 @@ $('.exercise').click(function() {
 });
 
 var loadExercise = 	function(exercise) {
+	clearAll();
 	var methodBody = exercise.MethodBody
 	var methodCalls = exercise.MethodCalls
 
