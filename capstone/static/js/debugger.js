@@ -12,14 +12,12 @@ var clearAll = function() {
 	$('#PythonCode').val("");
 	$('#MethodCalls').val("");
 	$('#ResultData').text("");
-	$('#TestResultGrid ol').empty();
 	workbenchViewModel.reset()
 }
 
 var loadAllData = function(methodBody, unitTestsText, unitTests) {
 	$('#PythonCode').val(methodBody);
 	$('#MethodCalls').val(unitTestsText);
-	workbenchViewModel.loadTestGridData()
 };
 
 $('#startDebugging').click(function() {
@@ -39,6 +37,5 @@ var displayResultData = function(data) {
 	$('#ResultData').text(data.exception + data.localVars + data.lineNumber);
 	if (data.testResults) {
 		workbenchViewModel.loadActualResults(data.testResults);
-		workbenchViewModel.loadTestGridData();
 	}
 };
