@@ -27,6 +27,7 @@ var loadExercise = 	function(exercise) {
 		methodCallText += method.toString() + "\n";
 	};
 
+	workbenchViewModel.loadNewExercise(exercise.WordProblem, methodBody, methodCallText);
 	workbenchViewModel.loadExpectedResults(methodCalls);
 	loadAllData(methodBody, methodCallText, methodCalls);
 	$('#Exercises').dialog('close')

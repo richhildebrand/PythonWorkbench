@@ -1,4 +1,5 @@
 var workbenchViewModel  = new kendo.data.ObservableObject({
+	Exercise: new Exercise(),
 	UnitTests: new Array(),
 
 	reset: function() {
@@ -6,6 +7,13 @@ var workbenchViewModel  = new kendo.data.ObservableObject({
 		while (tests.length > 0) {
 			tests.pop();
 		}
+	},
+
+	loadNewExercise: function(wordProblem, methodBody, methodCallText) {
+		exercise = this.get("Exercise");
+		exercise.set("wordProblem", wordProblem);
+		exercise.set("methodBody", methodBody);
+		exercise.set("methodCallText", methodCallText);
 	},
 
 	loadExpectedResults: function(tests) {
