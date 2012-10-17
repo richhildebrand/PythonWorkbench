@@ -19,6 +19,7 @@
     
 </div>
 
+<img src="{{ STATIC_URL }}styles/images/python-instruc-logo.png" class="shadow" width="376" height="148" alt="logo">
 
 <div id="Exercises" title="Exercises"></div>
 
@@ -37,13 +38,25 @@
         <div class="DebugResultWrap">
                 <input id="TakeStep" type="button" value="Next Step">
                 <div id="ResultData"></div>
-                <div id="TestResultGrid">
+                <div id="TestResultGrid" >
                   <span>Test</span>
                   <span>Expected Result</span>
                   <span>Acutual Result</span>
-                  <ol class="testColumn"></ol>
-                  <ol class="expectedResultColumn"></ol>
-                  <ol class="actualResultColumn"></ol>
+                  <ol class="testColumn" 
+                      data-role="listview" 
+                      data-bind="source: UnitTests" 
+                      data-template="test-grid-name">
+                  </ol>
+                  <ol class="expectedResultColumn" 
+                      data-role="listview" 
+                      data-bind="source: UnitTests" 
+                      data-template="test-grid-expectedResult">
+                  </ol>
+                  <ol class="actualResultColumn" 
+                      data-role="listview" 
+                      data-bind="source: UnitTests" 
+                      data-template="test-grid-actualResult">
+                  </ol>
                 </div>
         </div>
 </div>
@@ -53,3 +66,39 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/exercise.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/debugger.js"></script>
 
+<script type="text/x-kendo-template" id="test-grid-name">
+  <li>#= data.name#</li>
+</script>
+<script type="text/x-kendo-template" id="test-grid-expectedResult">
+  <li>#= data.expectedResult#</li>
+</script>
+<script type="text/x-kendo-template" id="test-grid-actualResult">
+  <li>#= data.actualResult#</li>
+</script>
+
+<script>
+      kendo.bind("#TestResultGrid", workbenchViewModel);
+</script>
+
+<script type="text/javascript">
+	$(window).bind('load resize', function(e){
+  		if (e.type === 'resize'){
+   		 	$('.drop_shadow_layer').remove();
+  		}
+
+		$('.shadow').each(function(){
+  
+	  	$('<div class="drop_shadow_layer">').appendTo($('body')).css({
+			position: 'absolute',
+			width: $(this).width() + 'px',
+			height: $(this).height() + 'px',
+			backgroundColor: '#353535',
+			zIndex: -5000,
+			top: ($(this).offset().top + 5) + 'px',
+			left: ($(this).offset().left + 5) + 'px'
+	  });
+	  
+	});
+
+});
+</script>
