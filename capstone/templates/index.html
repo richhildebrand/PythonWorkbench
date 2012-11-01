@@ -12,6 +12,26 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/kendo.all.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/underscore-min.js"></script>
 
+<!-- Code mirror theme stylesheets -->
+<link rel="stylesheet" href="codemirror-2.35/theme/neat.css">
+<link rel="stylesheet" href="codemirror-2.35/theme/elegant.css">
+<link rel="stylesheet" href="codemirror-2.35/theme/erlang-dark.css">
+<link rel="stylesheet" href="codemirror-2.35/theme/night.css">
+<link rel="stylesheet" href="codemirror-2.35/theme/monokai.css">
+<link rel="stylesheet" href="codemirror-2.35/theme/cobalt.css">
+<link rel="stylesheet" href="codemirror-2.35/theme/eclipse.css">
+<link rel="stylesheet" href="codemirror-2.35/theme/rubyblue.css">
+<link rel="stylesheet" href="codemirror-2.35/theme/lesser-dark.css">
+<link rel="stylesheet" href="codemirror-2.35/theme/xq-dark.css">
+<link rel="stylesheet" href="codemirror-2.35/theme/ambiance.css">
+<link rel="stylesheet" href="codemirror-2.35/theme/blackboard.css">
+<link rel="stylesheet" href="codemirror-2.35/theme/vibrant-ink.css">
+<link rel="stylesheet" href="codemirror-2.35/lib/codemirror.css">
+
+<!-- Code mirror javascript files -->
+<script src="codemirror-2.35/lib/codemirror.js"></script>
+<script src="codemirror-2.35/mode/python/python.js"></script>
+
 <div id="header">
 	<h1>Python Instructor</h1>
 	<img src="{{ STATIC_URL }}styles/images/headerbar.jpg" alt="headBar" class="headBar" />
@@ -28,7 +48,23 @@
         </p>
         <div class="PythonCodeWrap">
                 <input id="startDebugging" type="button" value="Start Debugging">
-                <textarea name="PythonCode" id="PythonCode"></textarea>
+                Select a theme: <select onChange="selectTheme()" id=select>
+    				<option selected>default</option>
+    				<option>ambiance</option>
+    	 			<option>blackboard</option>
+    				<option>cobalt</option>
+    				<option>eclipse</option>
+    				<option>elegant</option>
+    				<option>erlang-dark</option>
+    				<option>lesser-dark</option>
+    				<option>monokai</option>
+    				<option>neat</option>
+    				<option>night</option>
+    				<option>rubyblue</option>
+    				<option>vibrant-ink</option>
+    				<option>xq-dark</option>
+			</select>
+                <textarea name="PythonCode" class="PythonCode" id="code"></textarea>
                 <textarea id="MethodCalls" readonly="readonly"></textarea>
         </div>
 
@@ -57,6 +93,31 @@
                 </div>
         </div>
 </div>
+
+<script>
+var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+  mode: "text/x-python",
+  lineNumbers: true,
+  lineWrapping: false,
+  onCursorActivity: function() {
+    editor.setLineClass(hlLine, null, null);
+    hlLine = editor.setLineClass(editor.getCursor().line, null, "activeline");
+  }
+});
+var hlLine = editor.setLineClass(0, "activeline");
+
+var input = document.getElementById("select");
+  function selectTheme() {
+    var theme = input.options[input.selectedIndex].innerHTML;
+    editor.setOption("theme", theme);
+  }
+  var choice = document.location.search && document.location.search.slice(1);
+  if (choice) {
+    input.value = choice;
+    editor.setOption("theme", choice);
+  }
+</script>
+
 
 <script type="text/javascript" src="{{ STATIC_URL }}js/unitTests.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/workbenchViewModel.js"></script>
