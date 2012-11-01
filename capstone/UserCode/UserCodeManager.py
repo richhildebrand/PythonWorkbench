@@ -52,7 +52,7 @@ class UserCodeManager:
 		# Need replace with actual exception; localVars; lineNumber
 		fileParser = FileParser.FileParser(self.USER_FILE_PATH + self.userID + 'ResultFile.txt')
 		userStepResult = {}
-		userStepResult['exception'] = self.userCodeException
+		userStepResult['exception'] = str(self.userCodeException)
 		userStepResult['localVars'] = fileParser.get_local_vars()
 		userStepResult['lineNumber'] = fileParser.get_current_line()
 		return userStepResult
