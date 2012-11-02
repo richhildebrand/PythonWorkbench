@@ -96,26 +96,26 @@
 </div>
 
 <script>
-var editor = CodeMirror.fromTextArea(document.getElementById("PythonCode"), {
+var pythonCodeEditor = CodeMirror.fromTextArea(document.getElementById("PythonCode"), {
   mode: "text/x-python",
   lineNumbers: true,
   lineWrapping: false,
   onCursorActivity: function() {
-    editor.setLineClass(hlLine, null, null);
-    hlLine = editor.setLineClass(editor.getCursor().line, null, "activeline");
+    pythonCodeEditor.setLineClass(hlLine, null, null);
+    hlLine = pythonCodeEditor.setLineClass(pythonCodeEditor.getCursor().line, null, "activeline");
   }
 });
-var hlLine = editor.setLineClass(0, "activeline");
+var hlLine = pythonCodeEditor.setLineClass(0, "activeline");
 
 var input = document.getElementById("select");
   function selectTheme() {
     var theme = input.options[input.selectedIndex].innerHTML;
-    editor.setOption("theme", theme);
+    pythonCodeEditor.setOption("theme", theme);
   }
   var choice = document.location.search && document.location.search.slice(1);
   if (choice) {
     input.value = choice;
-    editor.setOption("theme", choice);
+    pythonCodeEditor.setOption("theme", choice);
   }
 </script>
 
