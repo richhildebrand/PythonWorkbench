@@ -33,6 +33,13 @@ $("#TakeStep").click(function() {
 	});
 });
 
+$('#runAll').click(function() {
+	var pythonCode = { pythonCode: $('#PythonCode').val(), unitTests: $('#MethodCalls').val() };
+	$.get('/student/runAll', pythonCode, function(data) {
+		displayResultData(data)
+	});
+});
+
 var displayResultData = function(data) {
 	$('#ResultData').text(data.exception + data.localVars + data.lineNumber);
 	if (data.testResults) {

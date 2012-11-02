@@ -28,9 +28,25 @@ class UserCodeManager:
 		self.__runFile()
 		return self.__resultOfStepInUserCode()
 
+	def executeEntireUserCode(self):
+		numLines = self.__lineCount()
+		i = 0
+		while i < numLines :
+			self.stepNumber = self.stepNumber + 1
+			self.__runFile()
+			i = i + 1
+		return self.__resultOfStepInUserCode()
+
 	def runTestsOnUserCode(self):
 		testRunner = TestRunner.TestRunner(self.userID, self.userCode, self.unitTests)
 		return testRunner.getResults()
+
+	def __lineCount(self):
+		lineCount = 0
+		for character in self.userCode:
+			if character == '\n':
+				lineCount += 1
+		return lineCount + 1
 
 	def __runFile(self):
 		PythonLib.ensureDirectoryExists(self.USER_FILE_PATH)

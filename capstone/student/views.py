@@ -25,3 +25,14 @@ def takeStep(request):
 	sessionIdForAnonymousUser = 'AnonymousUserSession' + request.session.session_key
 	stepResult = userManager.executeStepInUserCode(sessionIdForAnonymousUser)
 	return HttpResponse(json.dumps(stepResult), mimetype="application/json")	
+
+def runAll(request):
+	userCode = request.GET['pythonCode']
+	unitTests = request.GET['unitTests']
+	request.session.save() 
+	sessionIdForAnonymousUser = 'AnonymousUserSession' + request.session.session_key
+	userManager.createUserCodeManager(sessionIdForAnonymousUser, userCode, unitTests);
+	stepResult = userManager.executeEntireUserCode(sessionIdForAnonymousUser)
+	testResults = userManager.runTestsOnUserCode(sessionIdForAnonymousUser);
+	stepResult['testResults'] = testResults
+	return HttpResponse(json.dumps(stepResult), mimetype="application/json")

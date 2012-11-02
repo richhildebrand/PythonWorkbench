@@ -12,5 +12,8 @@ class UserManager:
 	def executeStepInUserCode(self, user):
 		return self.userCodeManagers[user].executeStepInUserCode()
 
+	def executeEntireUserCode(self, user):
+		return self.userCodeManagers[user].executeEntireUserCode()
+
 	def runTestsOnUserCode(self, user):
 		return self.userCodeManagers[user].runTestsOnUserCode()
