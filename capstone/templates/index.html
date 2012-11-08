@@ -49,22 +49,6 @@
         <div class="PythonCodeWrap">
                 <input id="startDebugging" type="button" value="Start Debugging">
                 <input id="runAll" type="button" value="Execute Code">
-                Select a theme: <select onChange="selectTheme()" id=select>
-    				<option selected>default</option>
-    				<option>ambiance</option>
-    	 			<option>blackboard</option>
-    				<option>cobalt</option>
-    				<option>eclipse</option>
-    				<option>elegant</option>
-    				<option>erlang-dark</option>
-    				<option>lesser-dark</option>
-    				<option>monokai</option>
-    				<option>neat</option>
-    				<option>night</option>
-    				<option>rubyblue</option>
-    				<option>vibrant-ink</option>
-    				<option>xq-dark</option>
-			</select>
                 <textarea name="PythonCode" class="PythonCode" id="PythonCode"></textarea>
                 <textarea id="MethodCalls" readonly="readonly"></textarea>
         </div>
@@ -100,20 +84,10 @@ var pythonCodeEditor = CodeMirror.fromTextArea(document.getElementById("PythonCo
   mode: "text/x-python",
   lineNumbers: true,
   lineWrapping: false,
+  theme: "neat"
 });
 
 var currentLine = pythonCodeEditor.getLineHandle(0);
-
-var input = document.getElementById("select");
-  function selectTheme() {
-    var theme = input.options[input.selectedIndex].innerHTML;
-    pythonCodeEditor.setOption("theme", theme);
-  }
-  var choice = document.location.search && document.location.search.slice(1);
-  if (choice) {
-    input.value = choice;
-    pythonCodeEditor.setOption("theme", choice);
-  }
 </script>
 
 

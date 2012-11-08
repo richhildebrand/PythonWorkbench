@@ -42,5 +42,5 @@ var workbenchViewModel  = new kendo.data.ObservableObject({
 		if (pythonCodeEditor.getLineHandle(nextLine)) {
       		currentLine = pythonCodeEditor.setLineClass(nextLine, null, "currentLine");
     	}		
-  }
+  	}
 });
