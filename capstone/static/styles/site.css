@@ -126,5 +126,8 @@ textarea:focus {
         border: 5px inset #0F0;
         background-color: #F3F3F3;
 }
-.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}
-.activeline {background: #e8f2ff !important;}
+.CodeMirror {
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+}
+.currentLine { background: grey !important; }

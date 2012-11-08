@@ -100,12 +100,7 @@ var pythonCodeEditor = CodeMirror.fromTextArea(document.getElementById("PythonCo
   mode: "text/x-python",
   lineNumbers: true,
   lineWrapping: false,
-  onCursorActivity: function() {
-    pythonCodeEditor.setLineClass(hlLine, null, null);
-    hlLine = pythonCodeEditor.setLineClass(pythonCodeEditor.getCursor().line, null, "activeline");
-  }
 });
-var hlLine = pythonCodeEditor.setLineClass(0, "activeline");
 
 var input = document.getElementById("select");
   function selectTheme() {

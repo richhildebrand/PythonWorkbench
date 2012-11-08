@@ -47,5 +47,7 @@ var displayResultData = function(data) {
 	$('#ResultData').text(data.exception + data.localVars + data.lineNumber);
 	if (data.testResults) {
 		workbenchViewModel.loadActualResults(data.testResults);
+
 	}
+	workbenchViewModel.highlightCurrentLine(data.lineNumber);
 };
