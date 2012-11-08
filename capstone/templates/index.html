@@ -102,6 +102,8 @@ var pythonCodeEditor = CodeMirror.fromTextArea(document.getElementById("PythonCo
   lineWrapping: false,
 });
 
+var currentLine = pythonCodeEditor.getLineHandle(0);
+
 var input = document.getElementById("select");
   function selectTheme() {
     var theme = input.options[input.selectedIndex].innerHTML;

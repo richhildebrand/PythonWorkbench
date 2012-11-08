@@ -49,5 +49,5 @@ var displayResultData = function(data) {
 		workbenchViewModel.loadActualResults(data.testResults);
 
 	}
-	workbenchViewModel.highlightCurrentLine(data.lineNumber);
+	workbenchViewModel.highlightCurrentLine(parseInt(data.lineNumber));
 };
