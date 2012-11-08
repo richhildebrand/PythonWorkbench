@@ -14,7 +14,8 @@ var clearAll = function() {
 	$('#MethodCalls').val("");
 	$('#ResultData').text("");
 	pythonCodeEditor.setValue("");
-	workbenchViewModel.reset()
+	unitTestEditor.setValue("");
+	workbenchViewModel.reset();
 }
 
 var loadAllData = function(methodBody, unitTestsText, unitTests) {

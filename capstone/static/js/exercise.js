@@ -31,5 +31,6 @@ var loadExercise = 	function(exercise) {
 	workbenchViewModel.loadExpectedResults(methodCalls);
 	loadAllData(methodBody, methodCallText, methodCalls);
 	pythonCodeEditor.setValue(methodBody);
+	unitTestEditor.setValue(methodCallText);
 	$('#Exercises').dialog('close')
 };

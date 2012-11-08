@@ -126,8 +126,12 @@ textarea:focus {
         border: 5px inset #0F0;
         background-color: #F3F3F3;
 }
-.CodeMirror {
+.pythonCodeContainer .CodeMirror {
         border-top: 1px solid black;
-        border-bottom: 1px solid black;
 }
-.currentLine { background: grey !important; }
+
+.methodCallContainer .CodeMirror {
+        border-bottom: 1px solid black;
+        height: 20%;
+}
+.currentLine { background: #e8f2ff  !important; }
