@@ -9,12 +9,11 @@ class FileParser:
         self.__parse_file(filename)
 
     def get_local_vars(self):
-        print self.local_vars
         return self.local_vars
 
     def get_current_line(self):
-        print self.current_line
-        return self.current_line
+        #adjust for extra inserted line
+        return int(self.current_line)-1
 
     def __parse_file(self, filename):
         try:
