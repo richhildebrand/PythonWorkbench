@@ -14,6 +14,7 @@ class UserCodeManager:
 	userCode = None
 	userID = None
 	userCodeException = None
+	currentLineInUserCode = None
 
 	def __init__(self, userID, userCode, unitTests):
 		self.stepNumber = 0
@@ -55,20 +56,21 @@ class UserCodeManager:
 
 		debugger = pdb.Pdb(completekey='tab', stdin=inputForDebugger, stdout=outputFromDebugger)
 		self.userCodeException = ''
-		
 		try:
 			debugger.run('import ' + self.userCodeFilePath, {}, {})
+			fileParser = FileParser.FileParser(self.USER_FILE_PATH + self.userID + 'ResultFile.txt')
+			self.currentLineInUserCode = fileParser.get_current_line()
 		except Exception, e:
-			self.userCodeException = e
+			self.userCodeException = PythonLib.parseExceptionMessage(e)
+			self.currentLineInUserCode = PythonLib.parseExceptionLineNumber(e)
 		finally:
 			outputFromDebugger.close()
 			inputForDebugger.close()
 
 	def __resultOfStepInUserCode(self):
-		# Need replace with actual exception; localVars; lineNumber
 		fileParser = FileParser.FileParser(self.USER_FILE_PATH + self.userID + 'ResultFile.txt')
 		userStepResult = {}
-		userStepResult['exception'] = str(self.userCodeException)
+		userStepResult['exception'] = self.userCodeException
+		userStepResult['lineNumber'] = self.currentLineInUserCode
 		userStepResult['localVars'] = fileParser.get_local_vars()
-		userStepResult['lineNumber'] = fileParser.get_current_line()
 		return userStepResult
