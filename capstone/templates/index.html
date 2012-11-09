@@ -76,15 +76,22 @@ var pythonCodeEditor = CodeMirror.fromTextArea(document.getElementById("PythonCo
   mode: "text/x-python",
   lineNumbers: true,
   lineWrapping: false,
-  theme: "neat"
+  theme: "neat",
+  onChange: function() {
+    // refresh line numbers
+    unitTestEditor.setOption("lineNumbers", true);
+  }
 });
 
 var unitTestEditor = CodeMirror.fromTextArea(document.getElementById("MethodCalls"), {
   mode: "text/x-python",
-  lineNumbers: false,
+  lineNumbers: true,
   lineWrapping: false,
   theme: "neat",
-  readOnly: true
+  readOnly: true,
+  lineNumberFormatter: function(lineNumber) {
+      return lineNumber + pythonCodeEditor.lineCount()
+  }
 });
 
 var currentLine = pythonCodeEditor.getLineHandle(0);
