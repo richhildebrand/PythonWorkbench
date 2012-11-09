@@ -11,4 +11,4 @@ def parseExceptionMessage(e):
 def parseExceptionLineNumber(e):
 	segments = str(e).split("line ")
 	lineNumber = segments[1].split(")")
-	return lineNumber[0]
+	return int(lineNumber[0])

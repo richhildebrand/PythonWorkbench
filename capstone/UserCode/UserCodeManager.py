@@ -62,7 +62,8 @@ class UserCodeManager:
 			self.currentLineInUserCode = fileParser.get_current_line()
 		except Exception, e:
 			self.userCodeException = PythonLib.parseExceptionMessage(e)
-			self.currentLineInUserCode = PythonLib.parseExceptionLineNumber(e)
+			# Exception line number is off by one
+			self.currentLineInUserCode = PythonLib.parseExceptionLineNumber(e)-1
 		finally:
 			outputFromDebugger.close()
 			inputForDebugger.close()
