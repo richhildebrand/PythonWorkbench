@@ -34,7 +34,7 @@ $("#TakeStep").click(function() {
 });
 
 var displayResultData = function(data) {
-	$('#ResultData').text(data.exception + data.localVars + data.lineNumber);
+	$('#ResultData').text(data.exception + data.localVars + data.good_stuff);
 	if (data.testResults) {
 		workbenchViewModel.loadActualResults(data.testResults);
 	}

@@ -12,6 +12,14 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/kendo.all.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/underscore-min.js"></script>
 
+<!-- Code mirror theme stylesheets -->
+<link rel="stylesheet" href="{{ STATIC_URL }}codemirror-2.35/theme/neat.css">
+<link rel="stylesheet" href="{{ STATIC_URL }}codemirror-2.35/lib/codemirror.css">
+
+<!-- Code mirror javascript files -->
+<script src="{{ STATIC_URL }}codemirror-2.35/lib/codemirror.js"></script>
+<script src="{{ STATIC_URL }}codemirror-2.35/mode/python/python.js"></script>
+
 <div id="header">
 	<h1>Python Instructor</h1>
 	<img src="{{ STATIC_URL }}styles/images/headerbar.jpg" alt="headBar" class="headBar" />
@@ -28,13 +36,21 @@
         </p>
         <div class="PythonCodeWrap">
                 <input id="startDebugging" type="button" value="Start Debugging">
-                <textarea name="PythonCode" id="PythonCode"></textarea>
-                <textarea id="MethodCalls" readonly="readonly"></textarea>
+				<textarea name="PythonCode" id="PythonCode"></textarea>
+				<textarea id="MethodCalls" readonly="readonly"></textarea>
+
+                <input id="runAll" type="button" value="Execute Code">
+                <div class="pythonCodeContainer">
+                  <textarea name="PythonCode" class="PythonCode" id="PythonCode"></textarea>
+                </div>
+                <div class="methodCallContainer">
+                  <textarea id="MethodCalls" readonly="readonly"></textarea>
+                </div>
         </div>
 
         <div class="DebugResultWrap">
                 <input id="TakeStep" type="button" value="Next Step">
-                <div id="ResultData"></div>
+                <textarea id="ResultData"></textarea>
                 <div id="TestResultGrid" >
                   <span>Test</span>
                   <span>Expected Result</span>
@@ -57,6 +73,33 @@
                 </div>
         </div>
 </div>
+
+<script>
+var pythonCodeEditor = CodeMirror.fromTextArea(document.getElementById("PythonCode"), {
+  mode: "text/x-python",
+  lineNumbers: true,
+  lineWrapping: false,
+  theme: "neat",
+  onChange: function() {
+    // refresh line numbers
+    unitTestEditor.setOption("lineNumbers", true);
+  }
+});
+
+var unitTestEditor = CodeMirror.fromTextArea(document.getElementById("MethodCalls"), {
+  mode: "text/x-python",
+  lineNumbers: true,
+  lineWrapping: false,
+  theme: "neat",
+  readOnly: true,
+  lineNumberFormatter: function(lineNumber) {
+      return lineNumber + pythonCodeEditor.lineCount()
+  }
+});
+
+var currentLine = pythonCodeEditor.getLineHandle(0);
+</script>
+
 
 <script type="text/javascript" src="{{ STATIC_URL }}js/unitTests.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/workbenchViewModel.js"></script>

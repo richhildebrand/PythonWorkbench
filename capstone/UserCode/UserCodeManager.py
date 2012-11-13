@@ -1,4 +1,4 @@
-import io, pdb
+import io, pdb, re
 import PythonFileBuilder
 import TestRunner
 import FileParser
@@ -55,4 +55,13 @@ class UserCodeManager:
 		userStepResult['exception'] = self.userCodeException
 		userStepResult['localVars'] = fileParser.get_local_vars()
 		userStepResult['lineNumber'] = fileParser.get_current_line()
+		str1 = fileParser.parse_for_current_frame()
+		goodString = str1.replace('\n\r','\\n\\r')
+		goodString = goodString.replace('{','')
+		goodString = goodString.replace('}','')
+		goodString = goodString.replace(':','=')
+		goodString = re.sub(r'\<.*\>', 'function def', goodString)
+		goodString = goodString.replace(', ', '\r')
+		userStepResult['good_stuff'] = goodString
+		
 		return userStepResult
