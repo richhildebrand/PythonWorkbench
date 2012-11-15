@@ -19,7 +19,6 @@ $('.exercise').click(function() {
 
 var loadExercise = 	function(exercise) {
 	clearAll();
-
 	var userCodeSegment = "#" + exercise.WordProblem;
 	userCodeSegment += "\n" + exercise.MethodBody;
 

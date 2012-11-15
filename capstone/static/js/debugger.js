@@ -1,7 +1,8 @@
 $('#SimpleDemo').click(function() {
-	var methodBody = 'a = 3\nb = 4\nc = a + b\nd = a + b * c';
 	clearAll();
-	loadEditorText(methodBody, "");
+	var userCodeSegment = 'a = 3\nb = 4\nc = a + b\nd = a + b * c';
+	workbenchViewModel.set("userCodeSegment", userCodeSegment);
+	loadEditorText();
 });
 
 $('#ClearAll').click(function() {
