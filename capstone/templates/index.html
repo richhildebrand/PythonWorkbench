@@ -78,8 +78,7 @@ var pythonCodeEditor = CodeMirror.fromTextArea(document.getElementById("PythonCo
   lineWrapping: false,
   theme: "neat",
   onChange: function() {
-    // refresh line numbers
-    unitTestEditor.setOption("lineNumbers", true);
+    unitTestEditor.setOption("firstLineNumber", pythonCodeEditor.lineCount() + 1);
   }
 });
 
@@ -89,12 +88,13 @@ var unitTestEditor = CodeMirror.fromTextArea(document.getElementById("MethodCall
   lineWrapping: false,
   theme: "neat",
   readOnly: true,
-  lineNumberFormatter: function(lineNumber) {
-      return lineNumber + pythonCodeEditor.lineCount()
-  }
+  firstLineNumber : pythonCodeEditor.lineCount() + 1
 });
 
-var currentLine = pythonCodeEditor.getLineHandle(0);
+var currentLine = {   
+                    line:pythonCodeEditor.getLineHandle(0),
+                    isUserCodeLine: true
+                  };
 </script>
 
 

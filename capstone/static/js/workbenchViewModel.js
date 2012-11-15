@@ -35,12 +35,23 @@ var workbenchViewModel  = new kendo.data.ObservableObject({
 	},
 
   	highlightCurrentLine: function(nextLine) {
-  		if (currentLine) {
-  			pythonCodeEditor.setLineClass(currentLine, null, null);
-  		}
+  		(currentLine.isUserCodeLine) ? pythonCodeEditor.setLineClass(currentLine.line, null, null)
+  									 : unitTestEditor.setLineClass(currentLine.line, null, null);
+  		
   		nextLine += -1 // setLineClass sets the class on line number + 1
-		if (pythonCodeEditor.getLineHandle(nextLine)) {
-      		currentLine = pythonCodeEditor.setLineClass(nextLine, null, "currentLine");
-    	}		
+  		if (nextLine > pythonCodeEditor.lineCount()) {
+  			nextLine = nextLine -  pythonCodeEditor.lineCount()
+  			if (unitTestEditor.getLineHandle(nextLine)) {
+	      		currentLine.line = unitTestEditor.setLineClass(nextLine, null, "currentLine");
+	      		currentLine.isUserCodeLine = false;
+    		}
+  		}
+  		else {
+  			if (pythonCodeEditor.getLineHandle(nextLine)) {
+      			currentLine.line = pythonCodeEditor.setLineClass(nextLine, null, "currentLine");
+      			currentLine.isUserCodeLine = true;
+    		}
+
+		}			
   	}
 });
