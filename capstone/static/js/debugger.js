@@ -24,8 +24,7 @@ var loadAllData = function(methodBody, unitTestsText, unitTests) {
 };
 
 $('#startDebugging').click(function() {
-	pythonCodeEditor.save();
-	var pythonCode = { pythonCode: $('#PythonCode').val(), unitTests: $('#MethodCalls').val() };
+	var pythonCode = { pythonCode: pythonCodeEditor.getValue, unitTests: unitTestEditor.getValue() };
 	$.get('/student/startDebugging', pythonCode, function(data) {
 		displayResultData(data)
 	});
@@ -38,7 +37,7 @@ $("#TakeStep").click(function() {
 });
 
 $('#runAll').click(function() {
-	var pythonCode = { pythonCode: $('#PythonCode').val(), unitTests: $('#MethodCalls').val() };
+	var pythonCode = { pythonCode: pythonCodeEditor.getValue, unitTests: unitTestEditor.getValue() };
 	$.get('/student/runAll', pythonCode, function(data) {
 		displayResultData(data)
 	});
