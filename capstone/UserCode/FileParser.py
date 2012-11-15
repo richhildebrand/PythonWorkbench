@@ -17,9 +17,9 @@ class FileParser:
 		dirtyString1 = self.local_vars
 		return dirtyString1
 
-    def get_current_line(self):
-        #adjust for extra inserted line
-        return int(self.current_line)-1
+	def get_current_line(self):
+		#adjust for extra inserted line
+		return int(self.current_line)-1
 
 	def __parse_file(self, filename):
 		infile = open(filename, 'r')
