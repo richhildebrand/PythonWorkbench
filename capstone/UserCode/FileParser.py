@@ -19,7 +19,7 @@ class FileParser:
 
 	def get_current_line(self):
 		#adjust for extra inserted line
-		return int(self.current_line)-1
+		return int(self.current_line)-14
 
 	def __parse_file(self, filename):
 		infile = open(filename, 'r')

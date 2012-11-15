@@ -1,5 +1,5 @@
 class PythonFileBuilder:
-	STEPS_NEED_TO_FIRST_LINE = 4
+	STEPS_NEED_TO_FIRST_LINE = 5
 
 	def buildFile(self, code, filePrefix):
 		code = self.__addTabToNewLines(code)
