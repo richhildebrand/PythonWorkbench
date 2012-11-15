@@ -1,7 +1,9 @@
 var workbenchViewModel  = new kendo.data.ObservableObject({
 	UnitTests: new Array(),
+	userCodeSegment: "",
 
 	reset: function() {
+		this.set("userCodeSegment", "");
 		var tests = this.get("UnitTests");
 		while (tests.length > 0) {
 			tests.pop();
@@ -9,7 +11,6 @@ var workbenchViewModel  = new kendo.data.ObservableObject({
 	},
 
 	loadExpectedResults: function(tests) {
-	this.reset()
 	unitTests = this.get("UnitTests"); 
 		for (var test in tests) {
 			unitTests.push(new UnitTest(test, tests[test]));

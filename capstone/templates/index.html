@@ -75,7 +75,7 @@
 var pythonCodeEditor = CodeMirror.fromTextArea(document.getElementById("PythonCode"), {
   mode: "text/x-python",
   lineNumbers: true,
-  lineWrapping: false,
+  lineWrapping: true,
   theme: "neat",
   onChange: function() {
     unitTestEditor.setOption("firstLineNumber", pythonCodeEditor.lineCount() + 1);

@@ -19,15 +19,12 @@ $('.exercise').click(function() {
 
 var loadExercise = 	function(exercise) {
 	clearAll();
-	var methodBody = exercise.MethodBody
-	var methodCalls = exercise.MethodCalls
 
-	var methodCallText = "";
-	for (var method in methodCalls) {
-		methodCallText += method.toString() + "\n";
-	};
+	var userCodeSegment = "#" + exercise.WordProblem;
+	userCodeSegment += "\n" + exercise.MethodBody;
 
-	workbenchViewModel.loadExpectedResults(methodCalls);
-	loadAllData(methodBody);
+	workbenchViewModel.set("userCodeSegment", userCodeSegment);
+	workbenchViewModel.loadExpectedResults(exercise.MethodCalls);
+	loadEditorText();
 	$('#Exercises').dialog('close')
 };

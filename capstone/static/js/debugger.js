@@ -1,7 +1,7 @@
 $('#SimpleDemo').click(function() {
 	var methodBody = 'a = 3\nb = 4\nc = a + b\nd = a + b * c';
 	clearAll();
-	loadAllData(methodBody, "");
+	loadEditorText(methodBody, "");
 });
 
 $('#ClearAll').click(function() {
@@ -15,8 +15,8 @@ var clearAll = function() {
 	workbenchViewModel.reset();
 }
 
-var loadAllData = function(methodBody) {
-	pythonCodeEditor.setValue(methodBody);
+var loadEditorText = function() {
+	pythonCodeEditor.setValue(workbenchViewModel.userCodeSegment);
 	unitTestEditor.setValue(workbenchViewModel.getMethodCallTextFromUnitTests());
 };
 
