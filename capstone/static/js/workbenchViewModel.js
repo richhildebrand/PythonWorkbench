@@ -1,5 +1,4 @@
 var workbenchViewModel  = new kendo.data.ObservableObject({
-	Exercise: new Exercise(),
 	UnitTests: new Array(),
 
 	reset: function() {
@@ -9,19 +8,25 @@ var workbenchViewModel  = new kendo.data.ObservableObject({
 		}
 	},
 
-	loadNewExercise: function(wordProblem, methodBody, methodCallText) {
-		exercise = this.get("Exercise");
-		exercise.set("wordProblem", wordProblem);
-		exercise.set("methodBody", methodBody);
-		exercise.set("methodCallText", methodCallText);
-	},
-
 	loadExpectedResults: function(tests) {
 	this.reset()
 	unitTests = this.get("UnitTests"); 
 		for (var test in tests) {
 			unitTests.push(new UnitTest(test, tests[test]));
 		}
+	},
+
+	getMethodCallTextFromUnitTests: function() {
+		tests = this.get("UnitTests");
+		var methodCalls = ""
+		if (tests) {
+			var testNames = [];
+			for (var i=0; i<tests.length; i++) {
+				testNames.push(tests[i].name)
+			}
+			methodCalls = testNames.join("\n");
+		}	
+		return methodCalls;
 	},
 
 	loadActualResults: function(tests) {

@@ -15,9 +15,9 @@ var clearAll = function() {
 	workbenchViewModel.reset();
 }
 
-var loadAllData = function(methodBody, unitTestsText, unitTests) {
+var loadAllData = function(methodBody) {
 	pythonCodeEditor.setValue(methodBody);
-	unitTestEditor.setVal(unitTestsText);
+	unitTestEditor.setValue(workbenchViewModel.getMethodCallTextFromUnitTests());
 };
 
 $('#startDebugging').click(function() {
