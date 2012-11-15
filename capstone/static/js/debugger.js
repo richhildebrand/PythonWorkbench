@@ -1,7 +1,6 @@
 $('#SimpleDemo').click(function() {
 	var methodBody = 'a = 3\nb = 4\nc = a + b\nd = a + b * c';
 	clearAll();
-	pythonCodeEditor.setValue(methodBody);
 	loadAllData(methodBody, "");
 });
 
@@ -10,8 +9,6 @@ $('#ClearAll').click(function() {
 });
 
 var clearAll = function() {
-	$('#PythonCode').val("");
-	$('#MethodCalls').val("");
 	$('#ResultData').text("");
 	pythonCodeEditor.setValue("");
 	unitTestEditor.setValue("");
@@ -19,8 +16,8 @@ var clearAll = function() {
 }
 
 var loadAllData = function(methodBody, unitTestsText, unitTests) {
-	$('#PythonCode').val(methodBody);
-	$('#MethodCalls').val(unitTestsText);
+	pythonCodeEditor.setValue(methodBody);
+	unitTestEditor.setVal(unitTestsText);
 };
 
 $('#startDebugging').click(function() {
