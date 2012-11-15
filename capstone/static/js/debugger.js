@@ -25,7 +25,7 @@ var loadAllData = function(methodBody, unitTestsText, unitTests) {
 
 $('#startDebugging').click(function() {
 	pythonCodeEditor.save();
-	var pythonCode = { pythonCode: $('#PythonCode').val(), unitTests: $('#MethodCalls').val() };
+	var pythonCode = { pythonCode: $('#PythonCode').val(), unitTests: workbenchViewModel.UnitTests };
 	$.get('/student/startDebugging', pythonCode, function(data) {
 		displayResultData(data)
 	});
