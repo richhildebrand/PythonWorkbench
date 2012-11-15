@@ -32,5 +32,15 @@ var workbenchViewModel  = new kendo.data.ObservableObject({
 						});
 						targetTest.set("actualResult", tests[test]);
 		}; 
-	}
+	},
+
+  	highlightCurrentLine: function(nextLine) {
+  		if (currentLine) {
+  			pythonCodeEditor.setLineClass(currentLine, null, null);
+  		}
+  		nextLine += -1 // setLineClass sets the class on line number + 1
+		if (pythonCodeEditor.getLineHandle(nextLine)) {
+      		currentLine = pythonCodeEditor.setLineClass(nextLine, null, "currentLine");
+    	}		
+  	}
 });

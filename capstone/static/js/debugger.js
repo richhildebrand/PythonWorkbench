@@ -1,6 +1,7 @@
 $('#SimpleDemo').click(function() {
 	var methodBody = 'a = 3\nb = 4\nc = a + b\nd = a + b * c';
 	clearAll();
+	pythonCodeEditor.setValue(methodBody);
 	loadAllData(methodBody, "");
 });
 
@@ -12,7 +13,9 @@ var clearAll = function() {
 	$('#PythonCode').val("");
 	$('#MethodCalls').val("");
 	$('#ResultData').text("");
-	workbenchViewModel.reset()
+	pythonCodeEditor.setValue("");
+	unitTestEditor.setValue("");
+	workbenchViewModel.reset();
 }
 
 var loadAllData = function(methodBody, unitTestsText, unitTests) {
@@ -21,6 +24,7 @@ var loadAllData = function(methodBody, unitTestsText, unitTests) {
 };
 
 $('#startDebugging').click(function() {
+	pythonCodeEditor.save();
 	var pythonCode = { pythonCode: $('#PythonCode').val(), unitTests: $('#MethodCalls').val() };
 	$.get('/student/startDebugging', pythonCode, function(data) {
 		displayResultData(data)
@@ -33,9 +37,18 @@ $("#TakeStep").click(function() {
 	});
 });
 
+$('#runAll').click(function() {
+	var pythonCode = { pythonCode: $('#PythonCode').val(), unitTests: $('#MethodCalls').val() };
+	$.get('/student/runAll', pythonCode, function(data) {
+		displayResultData(data)
+	});
+});
+
 var displayResultData = function(data) {
 	$('#ResultData').text(data.exception + data.localVars + data.good_stuff);
 	if (data.testResults) {
 		workbenchViewModel.loadActualResults(data.testResults);
+
 	}
+	workbenchViewModel.highlightCurrentLine(parseInt(data.lineNumber));
 };

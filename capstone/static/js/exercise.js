@@ -30,5 +30,7 @@ var loadExercise = 	function(exercise) {
 	workbenchViewModel.loadNewExercise(exercise.WordProblem, methodBody, methodCallText);
 	workbenchViewModel.loadExpectedResults(methodCalls);
 	loadAllData(methodBody, methodCallText, methodCalls);
+	pythonCodeEditor.setValue(methodBody);
+	unitTestEditor.setValue(methodCallText);
 	$('#Exercises').dialog('close')
 };

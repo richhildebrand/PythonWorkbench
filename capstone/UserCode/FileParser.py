@@ -13,12 +13,21 @@ class FileParser:
 	def __init__(self, filename):
 		self.__parse_file(filename)
 
+<<<<<<< HEAD
 	def get_local_vars(self):
 		dirtyString1 = self.local_vars
 		return dirtyString1
 
 	def get_current_line(self):
 		return self.current_line
+=======
+    def get_local_vars(self):
+        return self.local_vars
+
+    def get_current_line(self):
+        #adjust for extra inserted line
+        return int(self.current_line)-1
+>>>>>>> help
 
 	def __parse_file(self, filename):
 		infile = open(filename, 'r')
@@ -50,4 +59,8 @@ class FileParser:
 	def clean_up(self, dirtyStrings):
 		cleanerString = re.sub(r'\<.*\>', '\(\)', dirtyStrings)
 		cleanString = re.sub(r'\,\s+', '\\\n\\\r', cleanerString)
+<<<<<<< HEAD
 		return cleanString
+=======
+		return cleanString
+>>>>>>> help

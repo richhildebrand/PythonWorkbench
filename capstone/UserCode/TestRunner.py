@@ -1,3 +1,5 @@
+from capstone.PythonLib import PythonLib
+
 class TestRunner:
 	methodBody = None
 	unitTests = None
@@ -13,10 +15,8 @@ class TestRunner:
 			if  len(str(test)) > 0:
 				try:
 					testResults[test] = self.__runTest(self.methodBody, test)
-					print "test result = " + testResults[test]
 				except Exception, e:
-					print e
-					testResults[test] = e
+					testResults[test] = PythonLib.parseExceptionMessage(e)
 		return testResults
 
 	def __runTest(self, methodBody, unitTest):

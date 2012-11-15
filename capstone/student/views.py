@@ -25,9 +25,6 @@ def startDebugging(request):
 def takeStep(request):
 	sessionIdForAnonymousUser = 'AnonymousUserSession' + request.session.session_key
 	stepResult = userManager.executeStepInUserCode(sessionIdForAnonymousUser)
-	#data = simplejson.loads(stepResult)
-	#print data[0]
-	#json.dumps(data[0])
 	return HttpResponse(json.dumps(stepResult), mimetype="application/json")	
 
 def runAll(request):
