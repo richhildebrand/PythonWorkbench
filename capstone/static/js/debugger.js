@@ -1,8 +1,8 @@
 $('#SimpleDemo').click(function() {
-	var methodBody = 'a = 3\nb = 4\nc = a + b\nd = a + b * c';
 	clearAll();
-	pythonCodeEditor.setValue(methodBody);
-	loadAllData(methodBody, "");
+	var userCodeSegment = 'a = 3\nb = 4\nc = a + b\nd = a + b * c';
+	workbenchViewModel.set("userCodeSegment", userCodeSegment);
+	loadEditorText();
 });
 
 $('#ClearAll').click(function() {
@@ -10,22 +10,19 @@ $('#ClearAll').click(function() {
 });
 
 var clearAll = function() {
-	$('#PythonCode').val("");
-	$('#MethodCalls').val("");
 	$('#ResultData').text("");
 	pythonCodeEditor.setValue("");
 	unitTestEditor.setValue("");
 	workbenchViewModel.reset();
 }
 
-var loadAllData = function(methodBody, unitTestsText, unitTests) {
-	$('#PythonCode').val(methodBody);
-	$('#MethodCalls').val(unitTestsText);
+var loadEditorText = function() {
+	pythonCodeEditor.setValue(workbenchViewModel.userCodeSegment);
+	unitTestEditor.setValue(workbenchViewModel.getMethodCallTextFromUnitTests());
 };
 
 $('#startDebugging').click(function() {
-	pythonCodeEditor.save();
-	var pythonCode = { pythonCode: $('#PythonCode').val(), unitTests: $('#MethodCalls').val() };
+	var pythonCode = { pythonCode: pythonCodeEditor.getValue, unitTests: unitTestEditor.getValue() };
 	$.get('/student/startDebugging', pythonCode, function(data) {
 		displayResultData(data)
 	});
@@ -38,7 +35,7 @@ $("#TakeStep").click(function() {
 });
 
 $('#runAll').click(function() {
-	var pythonCode = { pythonCode: $('#PythonCode').val(), unitTests: $('#MethodCalls').val() };
+	var pythonCode = { pythonCode: pythonCodeEditor.getValue, unitTests: unitTestEditor.getValue() };
 	$.get('/student/runAll', pythonCode, function(data) {
 		displayResultData(data)
 	});

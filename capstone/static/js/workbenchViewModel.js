@@ -1,27 +1,33 @@
 var workbenchViewModel  = new kendo.data.ObservableObject({
-	Exercise: new Exercise(),
 	UnitTests: new Array(),
+	userCodeSegment: "",
 
 	reset: function() {
+		this.set("userCodeSegment", "");
 		var tests = this.get("UnitTests");
 		while (tests.length > 0) {
 			tests.pop();
 		}
 	},
 
-	loadNewExercise: function(wordProblem, methodBody, methodCallText) {
-		exercise = this.get("Exercise");
-		exercise.set("wordProblem", wordProblem);
-		exercise.set("methodBody", methodBody);
-		exercise.set("methodCallText", methodCallText);
-	},
-
 	loadExpectedResults: function(tests) {
-	this.reset()
 	unitTests = this.get("UnitTests"); 
 		for (var test in tests) {
 			unitTests.push(new UnitTest(test, tests[test]));
 		}
+	},
+
+	getMethodCallTextFromUnitTests: function() {
+		tests = this.get("UnitTests");
+		var methodCalls = ""
+		if (tests) {
+			var testNames = [];
+			for (var i=0; i<tests.length; i++) {
+				testNames.push(tests[i].name)
+			}
+			methodCalls = testNames.join("\n");
+		}	
+		return methodCalls;
 	},
 
 	loadActualResults: function(tests) {
@@ -35,12 +41,22 @@ var workbenchViewModel  = new kendo.data.ObservableObject({
 	},
 
   	highlightCurrentLine: function(nextLine) {
-  		if (currentLine) {
-  			pythonCodeEditor.setLineClass(currentLine, null, null);
-  		}
+  		(currentLine.isUserCodeLine) ? pythonCodeEditor.setLineClass(currentLine.line, null, null)
+  									 : unitTestEditor.setLineClass(currentLine.line, null, null);
+  		
   		nextLine += -1 // setLineClass sets the class on line number + 1
-		if (pythonCodeEditor.getLineHandle(nextLine)) {
-      		currentLine = pythonCodeEditor.setLineClass(nextLine, null, "currentLine");
-    	}		
+  		if (nextLine >= pythonCodeEditor.lineCount()) {
+  			nextLine = nextLine -  pythonCodeEditor.lineCount()
+  			if (unitTestEditor.getLineHandle(nextLine)) {
+	      		currentLine.line = unitTestEditor.setLineClass(nextLine, null, "currentLine");
+	      		currentLine.isUserCodeLine = false;
+    		}
+  		}
+  		else {
+  			if (pythonCodeEditor.getLineHandle(nextLine)) {
+      			currentLine.line = pythonCodeEditor.setLineClass(nextLine, null, "currentLine");
+      			currentLine.isUserCodeLine = true;
+    		}
+		}			
   	}
 });

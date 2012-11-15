@@ -36,8 +36,6 @@
         </p>
         <div class="PythonCodeWrap">
                 <input id="startDebugging" type="button" value="Start Debugging">
-				<textarea name="PythonCode" id="PythonCode"></textarea>
-				<textarea id="MethodCalls" readonly="readonly"></textarea>
                 <input id="runAll" type="button" value="Execute Code">
                 <div class="pythonCodeContainer">
                   <textarea name="PythonCode" class="PythonCode" id="PythonCode"></textarea>
@@ -77,11 +75,10 @@
 var pythonCodeEditor = CodeMirror.fromTextArea(document.getElementById("PythonCode"), {
   mode: "text/x-python",
   lineNumbers: true,
-  lineWrapping: false,
+  lineWrapping: true,
   theme: "neat",
   onChange: function() {
-    // refresh line numbers
-    unitTestEditor.setOption("lineNumbers", true);
+    unitTestEditor.setOption("firstLineNumber", pythonCodeEditor.lineCount() + 1);
   }
 });
 
@@ -91,12 +88,13 @@ var unitTestEditor = CodeMirror.fromTextArea(document.getElementById("MethodCall
   lineWrapping: false,
   theme: "neat",
   readOnly: true,
-  lineNumberFormatter: function(lineNumber) {
-      return lineNumber + pythonCodeEditor.lineCount()
-  }
+  firstLineNumber : pythonCodeEditor.lineCount() + 1
 });
 
-var currentLine = pythonCodeEditor.getLineHandle(0);
+var currentLine = {   
+                    line:pythonCodeEditor.getLineHandle(0),
+                    isUserCodeLine: true
+                  };
 </script>
 
 

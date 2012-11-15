@@ -74,9 +74,6 @@ class UserCodeManager:
 		userStepResult['exception'] = self.userCodeException
 		userStepResult['lineNumber'] = self.currentLineInUserCode
 		userStepResult['localVars'] = fileParser.get_local_vars()
-#<<<<<<< HEAD
-#=======
-		userStepResult['lineNumber'] = fileParser.get_current_line()
 		str1 = fileParser.parse_for_current_frame()
 		goodString = str1.replace('\n\r','\\n\\r')
 		goodString = goodString.replace('{','')
@@ -85,9 +82,5 @@ class UserCodeManager:
 		goodString = re.sub(r'\<.*\>', 'function def', goodString)
 		goodString = goodString.replace(', ', '\r')
 		userStepResult['good_stuff'] = goodString
-		
-<<<<<<< HEAD
-=======
-#>>>>>>> Partially cleaned up frames and vars
->>>>>>> help
+
 		return userStepResult

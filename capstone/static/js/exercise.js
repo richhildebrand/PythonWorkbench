@@ -19,18 +19,11 @@ $('.exercise').click(function() {
 
 var loadExercise = 	function(exercise) {
 	clearAll();
-	var methodBody = exercise.MethodBody
-	var methodCalls = exercise.MethodCalls
+	var userCodeSegment = "#" + exercise.WordProblem;
+	userCodeSegment += "\n" + exercise.MethodBody;
 
-	var methodCallText = "";
-	for (var method in methodCalls) {
-		methodCallText += method.toString() + "\n";
-	};
-
-	workbenchViewModel.loadNewExercise(exercise.WordProblem, methodBody, methodCallText);
-	workbenchViewModel.loadExpectedResults(methodCalls);
-	loadAllData(methodBody, methodCallText, methodCalls);
-	pythonCodeEditor.setValue(methodBody);
-	unitTestEditor.setValue(methodCallText);
+	workbenchViewModel.set("userCodeSegment", userCodeSegment);
+	workbenchViewModel.loadExpectedResults(exercise.MethodCalls);
+	loadEditorText();
 	$('#Exercises').dialog('close')
 };
