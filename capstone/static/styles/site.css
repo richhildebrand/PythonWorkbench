@@ -33,8 +33,6 @@ h1 {
 }
 #MainArea {
         background-color: #3574A7;
-        -webkit-box-shadow:0 0 15px #FF0; 
-	-moz-box-shadow: 0 0 15px #FF0; 
 	box-shadow:0 0 15px #FF0; 
         /*border: 5px outset #36C;*/
         width: 98%;
@@ -58,24 +56,13 @@ a { cursor: hand; cursor: pointer; }
 #MainArea #MethodCalls {
         width: 99%;
         height: 20%;
-        font-family: 'Oxygen Mono', sans-serif;
-        border: 3px inset #CCC;
-        border-top: none;
         float: left;
-        resize: none;
-        overflow:auto;
 }
 
 .PythonCode {
         width: 99%;
         height: 70%;
-        font-family: 'Oxygen Mono', sans-serif;
-        border: 3px inset #CCC;
-        border-bottom: none;
         float: left;
-        resize: none;
-        overflow:auto;
-
 }
 #ResultData {
         width: 99%;
@@ -116,22 +103,19 @@ a { cursor: hand; cursor: pointer; }
         margin-top: 2%;
         float: left;
 }
-#startDebugging {
 
-}
 #TakeStep {
         display: block;
 }
-textarea:focus {
-        border: 5px inset #0F0;
-        background-color: #F3F3F3;
-}
+
 .pythonCodeContainer .CodeMirror {
-        border-top: 1px solid black;
+        border: 3px inset #CCC;
+        border-bottom: none;
 }
 
 .methodCallContainer .CodeMirror {
-        border-bottom: 1px solid black;
+        border: 3px inset #CCC;
+        border-top: none;
         height: 20%;
 }
 .currentLine { background: #e8f2ff  !important; }
