@@ -53,7 +53,7 @@ class UserCodeManager:
 		PythonLib.ensureDirectoryExists(self.USER_FILE_PATH)
 		outputFromDebugger = open(self.USER_FILE_PATH + self.userID + 'ResultFile.txt', 'w+')
 		inputForDebugger = io.StringIO(unicode(self.pythonFileBuilder.getPdcInstructions(self.stepNumber)))
-
+		#print str(self.pythonFileBuilder.getPdcInstructions(self.stepNumber))
 		debugger = pdb.Pdb(completekey='tab', stdin=inputForDebugger, stdout=outputFromDebugger)
 		self.userCodeException = ''
 		try:
@@ -74,13 +74,12 @@ class UserCodeManager:
 		userStepResult['exception'] = self.userCodeException
 		userStepResult['lineNumber'] = self.currentLineInUserCode
 		userStepResult['localVars'] = fileParser.get_local_vars()
-		str1 = fileParser.parse_for_current_frame()
-		goodString = str1.replace('\n\r','\\n\\r')
-		goodString = goodString.replace('{','')
-		goodString = goodString.replace('}','')
-		goodString = goodString.replace(':','=')
-		goodString = re.sub(r'\<.*\>', 'function def', goodString)
-		goodString = goodString.replace(', ', '\r')
-		userStepResult['good_stuff'] = goodString
-
+		pdbOutput= fileParser.parse_for_current_frame()
+		rawOutputString = pdbOutput.replace('\n\r','\\n\\r')
+		#rawOutputString = rawOutputString.replace('{','')
+		#rawOutputString = rawOutputString.replace('}','')
+		#rawOutputString = rawOutputString.replace(':','=')
+		rawOutputString = re.sub(r'\<function.*\>', 'function def', rawOutputString)
+		#formatOutString = rawOutputString.replace(', ', '\r')
+		userStepResult['stackInfo'] = rawOutputString
 		return userStepResult
