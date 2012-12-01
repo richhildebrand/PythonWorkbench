@@ -1,6 +1,8 @@
 ﻿import re
 class FileParser:
 	CURRENT_LINE_MATCHER = re.compile(r'^\s+(\d+)\s+->.*$')
+	FRAME_BEFORE_USER_CODE = "trace_dispatch"
+	FRAME_AFTER_USER_CODE = "<module>"
 	functions_including_their_vars = None
 	local_vars = ''
 	current_line = None
@@ -17,7 +19,8 @@ class FileParser:
 		return int(self.current_line)-8
 
 	def get_functions_including_vars(self):
-		print "Number of functions=" + str(len(self.functions_including_their_vars))
+		del self.functions_including_their_vars[self.FRAME_BEFORE_USER_CODE]
+		del self.functions_including_their_vars[self.FRAME_AFTER_USER_CODE]
 		return self.functions_including_their_vars
 
 	def __parse_file(self, filename):
@@ -40,7 +43,7 @@ class FileParser:
 				segments = line.split('===')
 				function_Name = segments[1];
 				local_vars = segments[2];
-				if self.__not_Blacklisted_Function_Name(function_Name):
+				if self.__is_user_code_function(function_Name):
 					self.functions_including_their_vars[function_Name] = self.__get_var_dictionary(local_vars)
 		except Exception, e:
 			print e
@@ -50,9 +53,11 @@ class FileParser:
 		#created inside  __check_For_Function_Name_And_Local_Vars
 		return local_Vars
 
-	def __not_Blacklisted_Function_Name(self, function_Name):
-		#TODO: verify function name != to blacklisted function name
-		blacklist = []
-		blacklist.append("trace_dispatch")
-		blacklist.append("run")
-		return not function_Name in blacklist
+	def __is_user_code_function(self, function_Name):
+		return self.__has_trace_dispatch_function(function_Name) and self.__does_not_have_module_function()
+		
+	def __has_trace_dispatch_function(self, function_Name):
+		return function_Name == self.FRAME_BEFORE_USER_CODE or	self.FRAME_BEFORE_USER_CODE in self.functions_including_their_vars
+
+	def __does_not_have_module_function(self):
+		return not self.FRAME_AFTER_USER_CODE in self.functions_including_their_vars
