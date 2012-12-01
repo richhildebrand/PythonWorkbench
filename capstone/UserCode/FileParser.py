@@ -14,7 +14,7 @@ class FileParser:
 
 	def get_current_line(self):
 		#adjust for extra inserted line
-		return int(self.current_line)-13
+		return int(self.current_line)-8
 
 	def get_functions_including_vars(self):
 		print "Number of functions=" + str(len(self.functions_including_their_vars))
@@ -40,9 +40,19 @@ class FileParser:
 				segments = line.split('===')
 				function_Name = segments[1];
 				local_vars = segments[2];
-				print "\n\nFunction Name= " + function_Name
-				print "LocalVars= " + local_vars
-				self.functions_including_their_vars[function_Name] = local_vars
-				print "Number of functions=" + str(len(self.functions_including_their_vars))
+				if self.__not_Blacklisted_Function_Name(function_Name):
+					self.functions_including_their_vars[function_Name] = self.__get_var_dictionary(local_vars)
 		except Exception, e:
-			catchException = e
+			print e
+
+	def __get_var_dictionary(self, local_Vars):
+		#TODO: This will work similar to building the function dictionary
+		#created inside  __check_For_Function_Name_And_Local_Vars
+		return local_Vars
+
+	def __not_Blacklisted_Function_Name(self, function_Name):
+		#TODO: verify function name != to blacklisted function name
+		blacklist = []
+		blacklist.append("trace_dispatch")
+		blacklist.append("run")
+		return not function_Name in blacklist
