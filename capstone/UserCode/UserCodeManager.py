@@ -62,19 +62,17 @@ class UserCodeManager:
 			self.currentLineInUserCode = fileParser.get_current_line()
 		except Exception, e:
 			self.userCodeException = PythonLib.parseExceptionMessage(e)
-			# Exception line number is off by one
-			self.currentLineInUserCode = PythonLib.parseExceptionLineNumber(e)-1
+			# Exception line number is off by eight
+			self.currentLineInUserCode = PythonLib.parseExceptionLineNumber(e)-8
 		finally:
 			outputFromDebugger.close()
 			inputForDebugger.close()
 
 	def __resultOfStepInUserCode(self):
-		print "\n\n START __resultOfStepInUserCode \n\n"
 		fileParser = FileParser.FileParser(self.USER_FILE_PATH + self.userID + 'ResultFile.txt')
 		userStepResult = {}
 		userStepResult['exception'] = self.userCodeException
 		userStepResult['lineNumber'] = self.currentLineInUserCode
 		userStepResult['localVars'] = fileParser.get_local_vars()
 		userStepResult['stackInfo'] = fileParser.get_functions_including_vars()
-		print "\n\n END __resultOfStepInUserCode \n\n"
 		return userStepResult

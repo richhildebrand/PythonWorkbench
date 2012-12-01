@@ -42,10 +42,20 @@ $('#runAll').click(function() {
 });
 
 var displayResultData = function(data) {
-	$('#ResultData').text(data.exception + data.localVars +  data.stackInfo );
+	var text = lolStringConcats(data.exception, data.localVars,data.stackInfo );
+	$('#ResultData').text(text);
 	if (data.testResults) {
 		workbenchViewModel.loadActualResults(data.testResults);
 
 	}
 	workbenchViewModel.highlightCurrentLine(parseInt(data.lineNumber));
 };
+
+var lolStringConcats = function(exceptions, localVars, stackInfo) {
+	var text = exceptions;
+	if (!text) {
+		for (func in stackInfo)
+			text += func + ': ' + stackInfo[func] + '\n';
+	}
+	return text;
+}
