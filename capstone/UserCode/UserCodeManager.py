@@ -69,17 +69,12 @@ class UserCodeManager:
 			inputForDebugger.close()
 
 	def __resultOfStepInUserCode(self):
+		print "\n\n START __resultOfStepInUserCode \n\n"
 		fileParser = FileParser.FileParser(self.USER_FILE_PATH + self.userID + 'ResultFile.txt')
 		userStepResult = {}
 		userStepResult['exception'] = self.userCodeException
 		userStepResult['lineNumber'] = self.currentLineInUserCode
 		userStepResult['localVars'] = fileParser.get_local_vars()
-		pdbOutput= fileParser.parse_for_current_frame()
-		rawOutputString = pdbOutput.replace('\n\r','\\n\\r')
-		#rawOutputString = rawOutputString.replace('{','')
-		#rawOutputString = rawOutputString.replace('}','')
-		#rawOutputString = rawOutputString.replace(':','=')
-		rawOutputString = re.sub(r'\<function.*\>', 'function def', rawOutputString)
-		#formatOutString = rawOutputString.replace(', ', '\r')
-		userStepResult['stackInfo'] = rawOutputString
+		userStepResult['stackInfo'] = fileParser.get_functions_including_vars()
+		print "\n\n END __resultOfStepInUserCode \n\n"
 		return userStepResult

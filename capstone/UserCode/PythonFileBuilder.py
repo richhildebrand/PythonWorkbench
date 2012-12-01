@@ -28,16 +28,9 @@ class PythonFileBuilder:
 		frameGetter += '\ndef getFramesAndVars():'
 		frameGetter += '\n\tbase = sys._getframe(0)'
 		frameGetter += '\n\tf = base.f_back'
-		frameGetter += '\n\tstart_flag = True'
 		frameGetter += '\n\twhile f.f_back:'
-		frameGetter += '\n\t\tif start_flag:'
-		frameGetter += '\n\t\t\tprint "B3G1N"'
-		frameGetter += '\n\t\tstart_flag=False'
-		#frameGetter += '\n\t\tprint f.f_lineno'
-		frameGetter += '\n\t\tif((f.f_lineno>=1 and f.f_lineno<49) and ((str(f.f_code.co_name) != "<module>") and (str(f.f_code.co_name) != "executeStepInUserCode") and (str(f.f_code.co_name) != "takeStep"))):'
-		frameGetter += '\n\t\t\tprint "\\n{function: " + str(f.f_code.co_name) + ", locals: " + str(f.f_locals) + "}"'
+		frameGetter += '\n\t\tprint "FunctionName===" + str(f.f_code.co_name) + "===LocalVars: " + str(f.f_locals)'
 		frameGetter += '\n\t\tf = f.f_back'
-		#frameGetter += '\n\tprint "Local Vars:\\n\\t"'
 		return frameGetter + code
 
 	def __createUserCodeFile(self, code, filePrefix):
