@@ -42,8 +42,9 @@ $('#runAll').click(function() {
 });
 
 var displayResultData = function(data) {
-	var text = lolStringConcats(data.exception, data.localVars,data.stackInfo );
-	$('#ResultData').text(text);
+	//var text = 
+	lolStringConcats(data.exception, data.localVars,data.stackInfo );
+	
 	if (data.testResults) {
 		workbenchViewModel.loadActualResults(data.testResults);
 
@@ -52,10 +53,35 @@ var displayResultData = function(data) {
 };
 
 var lolStringConcats = function(exceptions, localVars, stackInfo) {
-	var text = exceptions;
-	if (!text) {
-		for (func in stackInfo)
-			text += func + ': ' + stackInfo[func] + '\n';
+	var text = Array();
+	var counter = 0;
+	var colors = Array('#88E3FC', '#E8E8A5', '#63C1FF');
+	var htmlString = '';
+	
+	if (!exceptions) {
+		$('#ResultData').empty();
+		for (func in stackInfo){
+			text[counter] = func + ': ' + stackInfo[func] + '\n';
+			//$('#ResultData').css('background-color', '#0F3');
+			htmlString = '<p id="' + counter + '">Function: ' + text[counter] + '</p>'
+			//console.log(htmlString);
+			counter++;
+			//$('#ResultData').empty();
+			$('#ResultData').append(htmlString);
+		}
+	}else{
+		htmlString = '<p id="exceptions">' + exceptions + '</p>'
+		$('#ResultData').empty();
+		$('#ResultData').append(htmlString);
+		$('#exceptions').css('background-color', '#F22');
 	}
-	return text;
+	if(counter) {
+		while(counter>=0) {
+			$('#'+counter).css('background-color', colors[(counter % 3)]);
+			//console.log(colors[counter]);
+			//console.log($('#counter').attr());
+			counter--;
+		}
+	}
+	//return text;
 }
