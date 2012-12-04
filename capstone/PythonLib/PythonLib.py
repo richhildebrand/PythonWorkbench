@@ -5,10 +5,16 @@ def ensureDirectoryExists(path):
     if not os.path.exists(direcotryName):
         os.makedirs(direcotryName)
 def parseExceptionMessage(e):
-	segments = str(e).split("(")
-	return segments[0]
+	try:
+		segments = str(e).split("(")
+		return segments[0]
+	except:
+		return str(e)
 
 def parseExceptionLineNumber(e):
-	segments = str(e).split("line ")
-	lineNumber = segments[1].split(")")
-	return int(lineNumber[0])
+	try:
+		segments = str(e).split("line ")
+		lineNumber = segments[1].split(")")
+		return int(lineNumber[0])
+	except:
+		return -1
