@@ -19,18 +19,18 @@ class FileParser:
 		return int(self.current_line)-8
 
 	def get_functions_including_vars(self):
-		del self.functions_including_their_vars[self.FRAME_BEFORE_USER_CODE]
-		del self.functions_including_their_vars[self.FRAME_AFTER_USER_CODE]
+		if self.__has_trace_dispatch_function(""):
+			del self.functions_including_their_vars[self.FRAME_BEFORE_USER_CODE]
+		if not self.__does_not_have_module_function():
+			del self.functions_including_their_vars[self.FRAME_AFTER_USER_CODE]
 		return self.functions_including_their_vars
 
 	def __parse_file(self, filename):
-		print "\n\nSTART __parse_file"
 		infile = open(filename, 'r')
 		for line in infile:
 			self.__check_For_Function_Name_And_Local_Vars(line)
 			self.__check_For_Current_Line_Number(line)
 		infile.close()
-		print "\n\nEND __parse_file"
 
 	def __check_For_Current_Line_Number(self, line):
 		contains_Line_Number = self.CURRENT_LINE_MATCHER.match(line)
@@ -46,7 +46,7 @@ class FileParser:
 				if self.__is_user_code_function(function_Name):
 					self.functions_including_their_vars[function_Name] = self.__get_var_dictionary(local_vars)
 		except Exception, e:
-			print e
+			print "\n\n__check_For_Function_Name_And_Local_Vars = " + e + "\n\n"
 
 	def __get_var_dictionary(self, local_Vars):
 		#TODO: This will work similar to building the function dictionary

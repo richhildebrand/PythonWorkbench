@@ -61,6 +61,7 @@ class UserCodeManager:
 			fileParser = FileParser.FileParser(self.USER_FILE_PATH + self.userID + 'ResultFile.txt')
 			self.currentLineInUserCode = fileParser.get_current_line()
 		except Exception, e:
+			print "\n\n__runFile = " + str(e) + "\n\n"
 			self.userCodeException = PythonLib.parseExceptionMessage(e)
 			# Exception line number is off by eight
 			self.currentLineInUserCode = PythonLib.parseExceptionLineNumber(e)-8
