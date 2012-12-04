@@ -49,6 +49,7 @@
                 <input id="TakeStep" type="button" value="Next Step">
                 <div id="ResultData"></div>
                 <div id="TestResultGrid" >
+                  <span></span>
                   <span>Test</span>
                   <span>Expected Result</span>
                   <span>Acutual Result</span>
@@ -104,13 +105,16 @@ var currentLine = {
 <script type="text/javascript" src="{{ STATIC_URL }}js/debugger.js"></script>
 
 <script type="text/x-kendo-template" id="test-grid-name">
-  <li>#= data.name#</li>
+  # var testResult = workbenchViewModel.unitTestResult(data) #
+  <li class=#=testResult#>#= data.name#</li>
 </script>
 <script type="text/x-kendo-template" id="test-grid-expectedResult">
-  <li>#= data.expectedResult#</li>
+  # var testResult = workbenchViewModel.unitTestResult(data) #
+  <li class=#=testResult#>#= data.expectedResult#</li>
 </script>
 <script type="text/x-kendo-template" id="test-grid-actualResult">
-  <li>#= data.actualResult#</li>
+  # var testResult = workbenchViewModel.unitTestResult(data) #
+  <li class=#=testResult#>#= data.actualResult#</li>
 </script>
 
 <script>

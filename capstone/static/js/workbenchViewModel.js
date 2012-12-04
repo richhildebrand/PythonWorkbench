@@ -30,6 +30,20 @@ var workbenchViewModel  = new kendo.data.ObservableObject({
 		return methodCalls;
 	},
 
+	unitTestResult: function(test) {
+		var testResult;
+		if (test.expectedResult === test.actualResult) {
+			testResult = "testPassed"
+		}
+		else if (test.actualResult !== "") {
+			testResult = "testFailed"
+		}
+		else {
+			testResult = "testPending"
+		} 
+		return testResult;
+	},
+
 	loadActualResults: function(tests) {
 		unitTests = this.get("UnitTests");
 		for (test in tests) { 
