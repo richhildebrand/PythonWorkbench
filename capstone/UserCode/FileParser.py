@@ -10,7 +10,7 @@ class FileParser:
 
 	def __init__(self, filename):
 		self.functions_including_their_vars = {}
-		self.frame_depth = 0
+		self.frame_depth = 1
 		self.__parse_file(filename)
 		
 
@@ -47,12 +47,11 @@ class FileParser:
 				function_Name = segments[1];
 				local_vars = segments[2];
 				if self.__is_user_code_function(function_Name):
-					print function_Name
-					depth = str(self.frame_depth) + ") "
+					depth = str(self.frame_depth).zfill(3) + ") "
 					self.frame_depth += 1
 					self.functions_including_their_vars[depth + function_Name] = self.__get_var_dictionary(local_vars)
 		except Exception, e:
-			print "\n\n__check_For_Function_Name_And_Local_Vars = " + e + "\n\n"
+			print "\n\n__check_For_Function_Name_And_Local_Vars = " + str(e) + "\n\n"
 
 	def __get_var_dictionary(self, local_Vars):
 		#TODO: This will work similar to building the function dictionary
