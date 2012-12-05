@@ -42,7 +42,6 @@ $('#runAll').click(function() {
 });
 
 var displayResultData = function(data) {
-	//var text = 
 	lolStringConcats(data.exception, data.localVars,data.stackInfo );
 	
 	if (data.testResults) {
@@ -57,16 +56,15 @@ var lolStringConcats = function(exceptions, localVars, stackInfo) {
 	var counter = 0;
 	var colors = Array('#88E3FC', '#E8E8A5', '#63C1FF');
 	var htmlString = '';
+
+	sortedStackInfo = sortOnKeys(stackInfo);
 	
 	if (!exceptions) {
 		$('#ResultData').empty();
-		for (func in stackInfo){
-			text[counter] = func + ': ' + stackInfo[func] + '\n';
-			//$('#ResultData').css('background-color', '#0F3');
-			htmlString = '<p id="' + counter + '">Function: ' + text[counter] + '</p>'
-			//console.log(htmlString);
+		for (func in sortedStackInfo){
+			text[counter] = func + ': ' + sortedStackInfo[func] + '\n';
+			htmlString = '<p id="' + counter + '">Stack Position ' + text[counter] + '</p>'
 			counter++;
-			//$('#ResultData').empty();
 			$('#ResultData').append(htmlString);
 		}
 	}else{
@@ -77,11 +75,24 @@ var lolStringConcats = function(exceptions, localVars, stackInfo) {
 	}
 	if(counter) {
 		while(counter>=0) {
-			$('#'+counter).css('background-color', colors[(counter % 3)]);
-			//console.log(colors[counter]);
-			//console.log($('#counter').attr());
+			$('#'+counter).css('background-color', colors[(counter % 2)]);
 			counter--;
 		}
 	}
-	//return text;
+}
+
+function sortOnKeys(dict) {
+
+    var sorted = [];
+    for(var key in dict) {
+        sorted[sorted.length] = key;
+    }
+    sorted.sort();
+
+    var tempDict = {};
+    for(var i = 0; i < sorted.length; i++) {
+        tempDict[sorted[i]] = dict[sorted[i]];
+    }
+
+    return tempDict;
 }
