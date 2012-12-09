@@ -62,7 +62,7 @@ var lolStringConcats = function(exceptions, localVars, stackInfo) {
 	if (!exceptions) {
 		$('#ResultData').empty();
 		for (func in sortedStackInfo){
-			text[counter] = func + ': ' + sortedStackInfo[func] + '\n';
+			text[counter] = func + sortedStackInfo[func] + '\n';
 			htmlString = '<p id="' + counter + '">Stack Position ' + text[counter] + '</p>'
 			counter++;
 			$('#ResultData').append(htmlString);
