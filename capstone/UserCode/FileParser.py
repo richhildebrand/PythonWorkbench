@@ -7,6 +7,7 @@ class FileParser:
 	frame_depth = None
 	local_vars = ''
 	current_line = None
+	wrapper_Function_Counter = 0 #if 0 by EOF, then it is end of user code
 
 	def __init__(self, filename):
 		self.functions_including_their_vars = {}
@@ -28,8 +29,10 @@ class FileParser:
 			del self.functions_including_their_vars[self.FRAME_AFTER_USER_CODE]
 		return self.functions_including_their_vars
 
+	#parses through the file. if the wrapper function counter is equal to 0, then the file parser knows its the EOF for the code.
 	def __parse_file(self, filename):
 		infile = open(filename, 'r')
+		self.wrapper_Function_Counter = 0
 		for line in infile:
 			self.__check_For_Function_Name_And_Local_Vars(line)
 			self.__check_For_Current_Line_Number(line)
@@ -47,6 +50,7 @@ class FileParser:
 				function_Name = segments[1];
 				local_vars = segments[2];
 				if self.__is_user_code_function(function_Name):
+					self.wrapper_Function_Counter += 1
 					depth = str(self.frame_depth).zfill(3) + ") "
 					self.frame_depth += 1
 					self.functions_including_their_vars[depth + function_Name] = self.__get_var_dictionary(local_vars)

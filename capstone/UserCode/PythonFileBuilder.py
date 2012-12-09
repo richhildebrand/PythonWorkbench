@@ -24,7 +24,7 @@ class PythonFileBuilder:
 		return code + "\nWrapperFunction()"
 
 	def __addFrameGetter(self, code):
-		frameGetter = 'import sys, inspect'
+		frameGetter = 'import sys, inspect, linecache'
 		frameGetter += '\ndef getFramesAndVars():'
 		frameGetter += '\n\tbase = sys._getframe(0)'
 		frameGetter += '\n\tf = base.f_back'
