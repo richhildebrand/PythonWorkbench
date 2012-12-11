@@ -11,6 +11,7 @@ class FileParser:
 
 	def __init__(self, filename):
 		self.functions_including_their_vars = {}
+		self.varsIncludingTheirValues = {}
 		self.frame_depth = 1
 		self.__parse_file(filename)
 		
@@ -45,37 +46,24 @@ class FileParser:
 
 	def __check_For_Function_Name_And_Local_Vars(self, line):
 		try: # startswtih doesn't precheck string length
-			if line.startswith('FunctionName='):
-				segments = line.split('===')
-				function_Name = segments[1];		
-				local_vars = segments[2];
+			if line.startswith('FunctionName==='):
+				function_Name = line.split('===')[1];		
+				local_vars = line.split('===')[2];
 				if self.__is_user_code_function(function_Name):
-					self.wrapper_Function_Counter += 1
-					theName = re.compile('WrapperFunction')
-					if theName.match(function_Name):
-						function_Name = "<br />&nbsp;&nbsp;&nbsp;&nbsp;Global Scope:"
-					else:
-						function_Name = "<br />&nbsp;&nbsp;&nbsp;&nbsp;Function: " + function_Name
-					depth = str(self.frame_depth).zfill(3) + ") "
+					framedepth = str(self.frame_depth).zfill(3) + ") "
 					self.frame_depth += 1
-					self.functions_including_their_vars[depth + function_Name] = self.__get_var_dictionary(local_vars)
+					self.functions_including_their_vars[framedepth + function_Name] = self.__get_var_dictionary(local_vars)
 		except Exception, e:
 			print "\n\n__check_For_Function_Name_And_Local_Vars = " + str(e) + "\n\n"
 
 	def __get_var_dictionary(self, local_Vars):
-		symbol_Keys = {
-			':': ' = ',
-			'LocalVars = ': '<br />&nbsp;&nbsp;&nbsp;&nbsp;Locals:',
-			'{': '<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
-			'}': '',
-			',': '<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
-		}
+		local_Vars = local_Vars.replace("LocalVars:", "");
+		local_Vars = local_Vars.replace("{", "");
+		local_Vars = local_Vars.replace("}", "");
+		local_Vars = local_Vars.replace("'", "");
+		local_Vars = local_Vars.replace(" ", "");
+		local_Vars = local_Vars.replace(":", "=");
 
-		for key in symbol_Keys:
-			local_Vars = local_Vars.replace(key, symbol_Keys[key])
-		# replace each '<function' part of local_Var string with function definition
-		# assumes maximum of 16 character user function names
-		local_Vars = re.sub(r'<function\s.{1,24}\sat\s\dx[\d|\w]{8,}>', 'function definition', local_Vars)
 		return local_Vars
 	
 	def __is_user_code_function(self, function_Name):
@@ -86,6 +74,7 @@ class FileParser:
 		if (function_Name == self.FRAME_BEFORE_USER_CODE):
 			self.functions_including_their_vars[function_Name] = "Remove Me"
 		return	shouldAddUserFunction
+
 	def __does_not_have_module_function(self, function_Name):
 		if (function_Name == self.FRAME_AFTER_USER_CODE):
 		 	self.functions_including_their_vars[function_Name] = "Remove Me"
