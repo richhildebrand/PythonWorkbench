@@ -3,8 +3,8 @@ from django.utils import simplejson
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template import Context, RequestContext, loader
-from capstone.Exercise.models import Exercise
-from capstone.Exercise.models import MethodCall
+from PythonWorkbench.Exercise.models import Exercise
+from PythonWorkbench.Exercise.models import MethodCall
 from django.http import Http404
 
 def displayAll(request):

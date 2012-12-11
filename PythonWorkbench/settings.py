@@ -1,4 +1,4 @@
-# Django settings for capstone project.
+# Django settings for PythonWorkbench project.
 
 
 DEBUG = True
@@ -98,10 +98,10 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'capstone.urls'
+ROOT_URLCONF = 'PythonWorkbench.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'capstone.wsgi.application'
+WSGI_APPLICATION = 'PythonWorkbench.wsgi.application'
 
 import os
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
@@ -124,8 +124,8 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'capstone',
-    'capstone.Exercise',
+    'PythonWorkbench',
+    'PythonWorkbench.Exercise',
 )
 
 # A sample logging configuration. The only tangible logging

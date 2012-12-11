@@ -2,7 +2,7 @@ import io, pdb, re
 import PythonFileBuilder
 import TestRunner
 import FileParser
-from capstone.PythonLib import PythonLib
+from PythonWorkbench.PythonLib import PythonLib
 from collections import namedtuple
 
 class UserCodeManager:
@@ -63,7 +63,6 @@ class UserCodeManager:
 		PythonLib.ensureDirectoryExists(self.USER_FILE_PATH)
 		outputFromDebugger = open(self.USER_FILE_PATH + self.userID + 'ResultFile.txt', 'w+')
 		inputForDebugger = io.StringIO(unicode(self.pythonFileBuilder.getPdcInstructions(self.stepNumber)))
-		#print str(self.pythonFileBuilder.getPdcInstructions(self.stepNumber))
 		debugger = pdb.Pdb(completekey='tab', stdin=inputForDebugger, stdout=outputFromDebugger)
 		self.userCodeException = ''
 		try:

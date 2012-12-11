@@ -1,4 +1,4 @@
-from capstone.PythonLib import PythonLib
+from PythonWorkbench.PythonLib import PythonLib
 
 class TestRunner:
 	methodBody = None

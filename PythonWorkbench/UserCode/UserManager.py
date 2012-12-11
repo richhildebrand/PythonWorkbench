@@ -1,4 +1,4 @@
-from capstone.UserCode import UserCodeManager
+from PythonWorkbench.UserCode import UserCodeManager
 
 class UserManager:
 	userCodeManagers = None;
