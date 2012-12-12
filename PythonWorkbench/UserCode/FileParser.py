@@ -65,7 +65,6 @@ class FileParser:
 
 		local_Vars = local_Vars.split(' at ')[0] #remove memory location from functions
 
-
 		return local_Vars
 	
 	def __is_user_code_function(self, function_Name):
