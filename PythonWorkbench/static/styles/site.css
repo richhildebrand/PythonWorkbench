@@ -151,4 +151,31 @@ a { cursor: hand; cursor: pointer; }
         height: 20%;
 }
 
+.oddStackElement {
+        padding-top: 3px;
+        padding-bottom: 3px;
+        background-color: #88E3FC;
+}
+
+.evenStackElement {
+        padding-top: 3px;
+        padding-bottom: 3px;
+        background-color: #E8E8A5;
+}
+
+.exceptions {
+        background-color: #F22;
+}
+
+.functionName {
+      padding-left: 10px;
+      font-family: Verdana, Geneva, sans-serif
+}
+
+.varAndValue {
+        display: block;
+        padding-left: 20px;
+        font-family: Verdana, Geneva, sans-serif
+}
+
 .currentLine { background: #e8f2ff  !important; }

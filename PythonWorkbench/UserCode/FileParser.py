@@ -48,18 +48,23 @@ class FileParser:
 		if PythonLib.startsWith(line, 'FunctionName==='):
 			function_Name = line.split('===')[1];		
 			local_vars = line.split('===')[2];
-			if self.__is_user_code_function(function_Name):
+			if self.__is_user_code_function(function_Name):				
 				depth = str(self.frame_depth).zfill(3) + ") "
 				self.frame_depth += 1
 				self.functions_including_their_vars[depth + function_Name] = self.__format_local_vars(local_vars)
 
 	def __format_local_vars(self, local_Vars):
-		local_Vars = local_Vars.replace("LocalVars:", "");
-		local_Vars = local_Vars.replace("{", "");
-		local_Vars = local_Vars.replace("}", "");
-		local_Vars = local_Vars.replace("'", "");
-		local_Vars = local_Vars.replace(" ", "");
-		local_Vars = local_Vars.replace(":", "=");
+		local_Vars = local_Vars.replace("LocalVars:", "")
+		local_Vars = local_Vars.replace("{", "")
+		local_Vars = local_Vars.replace("}", "")
+		local_Vars = local_Vars.replace("<", "")
+		local_Vars = local_Vars.replace(">", "")
+		local_Vars = local_Vars.replace("'", "")
+		local_Vars = local_Vars.replace(":", " =")
+		local_Vars = local_Vars.replace('__return__', 'return')
+
+		local_Vars = local_Vars.split(' at ')[0] #remove memory location from functions
+
 
 		return local_Vars
 	

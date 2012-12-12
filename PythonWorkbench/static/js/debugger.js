@@ -45,36 +45,38 @@ var displayResultData = function(data) {
 };
 
 var lolStringConcats = function(exceptions, localVars, stackInfo) {
-	var text = Array();
 	var counter = 0;
-	var colors = Array('#88E3FC', '#E8E8A5', '#63C1FF');
 	var htmlString = '';
 
-	sortedStackInfo = sortOnKeys(stackInfo);
+	sortedStackInfo = sortByKey(stackInfo);
 	
 	if (!exceptions) {
 		$('#ResultData').empty();
 		for (func in sortedStackInfo){
-			text[counter] = func + sortedStackInfo[func] + '\n';
-			htmlString = '<p id="' + counter + '">Stack Position ' + text[counter] + '</p>'
+			backgroundColorClass = (counter % 2 == 0) ?	"oddStackElement" : "evenStackElement";
 			counter++;
+
+			var functionName = func.split(') ')[1] + ':';
+			var functionVars = sortedStackInfo[func].split(',')
+			htmlString =  '<div class="' + backgroundColorClass + '">' 
+			htmlString += '<span class="functionName">' + functionName + '</span>'
+			
+			for (var varAndValue in functionVars) {
+				htmlString += '<span class="varAndValue">' + functionVars[varAndValue] + '</span>' 
+			}
+			htmlString += '</div>'
+
 			$('#ResultData').append(htmlString);
 		}
-	}else{
-		htmlString = '<p id="exceptions">' + exceptions + '</p>'
+	}
+	else {
+		htmlString = '<p class="exceptions">' + exceptions + '</p>'
 		$('#ResultData').empty();
 		$('#ResultData').append(htmlString);
-		$('#exceptions').css('background-color', '#F22');
-	}
-	if(counter) {
-		while(counter>=0) {
-			$('#'+counter).css('background-color', colors[(counter % 2)]);
-			counter--;
-		}
 	}
 }
 
-function sortOnKeys(dict) {
+function sortByKey(dict) {
 
     var sorted = [];
     for(var key in dict) {
