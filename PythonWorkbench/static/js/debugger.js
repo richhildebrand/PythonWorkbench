@@ -34,13 +34,6 @@ $("#TakeStep").click(function() {
 	});
 });
 
-$('#runAll').click(function() {
-	var pythonCode = { pythonCode: pythonCodeEditor.getValue, unitTests: unitTestEditor.getValue() };
-	$.get('/student/runAll', pythonCode, function(data) {
-		displayResultData(data)
-	});
-});
-
 var displayResultData = function(data) {
 	lolStringConcats(data.exception, data.localVars,data.stackInfo );
 	
