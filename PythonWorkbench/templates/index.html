@@ -1,27 +1,19 @@
-<link href="{{ STATIC_URL }}styles/site.css" rel="stylesheet" type="text/css">
-<link href="{{ STATIC_URL }}styles/jqueryUI/jquery.ui.all.css" rel="stylesheet" type="text/css">
-<link href="{{ STATIC_URL }}styles/jqueryUI/jquery-ui-1.8.23.custom.css" rel="stylesheet" type="text/css">
-<link href='http://fonts.googleapis.com/css?family=Oxygen+Mono' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ STATIC_URL }}styles/site.css">
+<link rel="stylesheet" href="{{ STATIC_URL }}styles/jqueryUI/jquery.ui.all.css">
+<link rel="stylesheet" href="{{ STATIC_URL }}styles/jqueryUI/jquery-ui-1.8.23.custom.css">>
+<link rel="stylesheet" href="{{ STATIC_URL }}codemirror-2.35/lib/codemirror.css">
+<link rel="stylesheet" href="{{ STATIC_URL }}codemirror-2.35/theme/neat.css">
 
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ui.core.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ui.widget.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ui.mouse.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ui.position.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ui.dialog.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/kendo.all.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery-ui.custom.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}codemirror-2.35/lib/codemirror.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}codemirror-2.35/mode/python/python.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/underscore-min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/kendo.all.min.js"></script>
 
-<!-- Code mirror theme stylesheets -->
-<link rel="stylesheet" href="{{ STATIC_URL }}codemirror-2.35/theme/neat.css">
-<link rel="stylesheet" href="{{ STATIC_URL }}codemirror-2.35/lib/codemirror.css">
-
-<!-- Code mirror javascript files -->
-<script src="{{ STATIC_URL }}codemirror-2.35/lib/codemirror.js"></script>
-<script src="{{ STATIC_URL }}codemirror-2.35/mode/python/python.js"></script>
 
 <div id="header">
-	<h1>Python Instructor</h1>
+	<h1>Python Workbench</h1>
 	<img src="{{ STATIC_URL }}styles/images/headerbar.jpg" alt="headBar" class="headBar" />
 	<img src="{{ STATIC_URL }}styles/images/python-logo_tn.png" alt="logo" class="logo" />
 </div>
