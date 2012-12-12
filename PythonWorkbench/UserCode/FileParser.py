@@ -1,4 +1,6 @@
 ﻿import re
+from PythonWorkbench.PythonLib import PythonLib
+
 class FileParser:
 	CURRENT_LINE_MATCHER = re.compile(r'^\s+(\d+)\s+->.*$')
 	FRAME_BEFORE_USER_CODE = "trace_dispatch"
@@ -7,7 +9,6 @@ class FileParser:
 	frame_depth = None
 	local_vars = ''
 	current_line = None
-	wrapper_Function_Counter = 0 #if 0 by EOF, then it is end of user code
 
 	def __init__(self, filename):
 		self.functions_including_their_vars = {}
@@ -20,7 +21,7 @@ class FileParser:
 		return self.local_vars
 
 	def get_current_line(self):
-		#adjust for extra inserted line
+		#adjust for extra inserted lines
 		return int(self.current_line)-8
 
 	def get_functions_including_vars(self):
@@ -30,7 +31,6 @@ class FileParser:
 			del self.functions_including_their_vars[self.FRAME_AFTER_USER_CODE]
 		return self.functions_including_their_vars
 
-	#parses through the file. if the wrapper function counter is equal to 0, then the file parser knows its the EOF for the code.
 	def __parse_file(self, filename):
 		infile = open(filename, 'r')
 		self.wrapper_Function_Counter = 0
@@ -45,18 +45,15 @@ class FileParser:
 			self.current_line = contains_Line_Number.group(1)
 
 	def __check_For_Function_Name_And_Local_Vars(self, line):
-		try: # startswtih doesn't precheck string length
-			if line.startswith('FunctionName==='):
-				function_Name = line.split('===')[1];		
-				local_vars = line.split('===')[2];
-				if self.__is_user_code_function(function_Name):
-					framedepth = str(self.frame_depth).zfill(3) + ") "
-					self.frame_depth += 1
-					self.functions_including_their_vars[framedepth + function_Name] = self.__get_var_dictionary(local_vars)
-		except Exception, e:
-			print "\n\n__check_For_Function_Name_And_Local_Vars = " + str(e) + "\n\n"
+		if PythonLib.startsWith(line, 'FunctionName==='):
+			function_Name = line.split('===')[1];		
+			local_vars = line.split('===')[2];
+			if self.__is_user_code_function(function_Name):
+				depth = str(self.frame_depth).zfill(3) + ") "
+				self.frame_depth += 1
+				self.functions_including_their_vars[depth + function_Name] = self.__format_local_vars(local_vars)
 
-	def __get_var_dictionary(self, local_Vars):
+	def __format_local_vars(self, local_Vars):
 		local_Vars = local_Vars.replace("LocalVars:", "");
 		local_Vars = local_Vars.replace("{", "");
 		local_Vars = local_Vars.replace("}", "");

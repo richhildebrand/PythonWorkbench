@@ -18,3 +18,9 @@ def parseExceptionLineNumber(e):
 		return int(lineNumber[0])
 	except:
 		return -1
+
+def startsWith(doesMyString, thisString):
+	try: 
+		return doesMyString.startswith(thisString)
+	except:
+		return False
