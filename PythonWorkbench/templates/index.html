@@ -31,7 +31,7 @@
                 <div class="pythonCodeContainer">
                   <textarea name="PythonCode" class="PythonCode" id="PythonCode"></textarea>
                 </div>
-                <div class="methodCallContainer">
+                <div class="methodCallContainer" data-bind="style: { display: ifThereAreUnitTests }">
                   <textarea id="MethodCalls" readonly="readonly"></textarea>
                 </div>
         </div>
@@ -39,7 +39,7 @@
         <div class="DebugResultWrap">
                 <input id="TakeStep" type="button" value="Next Step">
                 <div id="ResultData"></div>
-                <div id="TestResultGrid" >
+                <div id="TestResultGrid" data-bind="style: { display: ifThereAreUnitTests }" >
                   <ol>
                     <li class="header">
                       <span class="testNameColumn">Test</span>
@@ -71,5 +71,5 @@
 </script>
 
 <script>
-      kendo.bind("#TestResultGrid", workbenchViewModel);
+      kendo.bind("#MainArea", workbenchViewModel);
 </script>

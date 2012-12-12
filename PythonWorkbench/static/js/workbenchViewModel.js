@@ -10,6 +10,10 @@ var workbenchViewModel  = new kendo.data.ObservableObject({
 		}
 	},
 
+	ifThereAreUnitTests: function() {
+		return (this.get("UnitTests").length > 0) ? "block" : "none";
+	},
+
 	loadExpectedResults: function(tests) {
 	unitTests = this.get("UnitTests"); 
 		for (var test in tests) {

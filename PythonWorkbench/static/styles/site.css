@@ -74,6 +74,86 @@ a { cursor: hand; cursor: pointer; }
         float: left;
 }
 
+/* Code Mirror Sections */
+#MainArea #MethodCalls {
+        width: 99%;
+        height: 20%;
+        float: left;
+}
+
+.PythonCode {
+        width: 99%;
+        height: 70%;
+        float: left;
+}
+
+.pythonCodeContainer .CodeMirror {
+        border: 3px inset #CCC;
+        border-bottom: none;
+}
+
+.methodCallContainer .CodeMirror {
+        border: 3px inset #CCC;
+        border-top: none;
+        height: 20%;
+}
+
+.pythonCodeContainer .CodeMirror {
+        border-top: 1px solid black;
+}
+
+.methodCallContainer .CodeMirror {
+        border-bottom: 1px solid black;
+        height: 20%;
+}
+
+.currentLine { background: #e8f2ff  !important; }
+
+/* Stack Info Window */
+#TakeStep {
+        display: block;
+}
+
+#ResultData {
+        width: 99%;
+        height: 46%;
+        border-top: 1px solid black;
+        border-left: 3px inset #CCC;
+        border-right: 3px inset #CCC;
+        border-bottom: 1px solid black;
+        float: left;
+        resize: none;
+        overflow: auto;
+        background: white;
+}
+
+.oddStackElement {
+        padding-top: 3px;
+        padding-bottom: 3px;
+        background-color: #88E3FC;
+}
+
+.evenStackElement {
+        padding-top: 3px;
+        padding-bottom: 3px;
+        background-color: #E8E8A5;
+}
+
+.exceptions {
+        background-color: #F22;
+}
+
+.functionName {
+      padding-left: 10px;
+      font-family: Verdana, Geneva, sans-serif
+}
+
+.varAndValue {
+        display: block;
+        padding-left: 20px;
+        font-family: Verdana, Geneva, sans-serif
+}
+
 /* Test Results */
 #TestResultGrid {
         margin-top: 2%;
@@ -119,81 +199,4 @@ a { cursor: hand; cursor: pointer; }
 }
 
 #TestResultGrid li.testPassed span {
-}
-
-/* Code Mirror Sections */
-#MainArea #MethodCalls {
-        width: 99%;
-        height: 20%;
-        float: left;
-}
-
-.PythonCode {
-        width: 99%;
-        height: 70%;
-        float: left;
-}
-
-.pythonCodeContainer .CodeMirror {
-        border: 3px inset #CCC;
-        border-bottom: none;
-}
-
-.methodCallContainer .CodeMirror {
-        border: 3px inset #CCC;
-        border-top: none;
-        height: 20%;
-}
-
-.pythonCodeContainer .CodeMirror {
-        border-top: 1px solid black;
-}
-
-.methodCallContainer .CodeMirror {
-        border-bottom: 1px solid black;
-        height: 20%;
-}
-
-.currentLine { background: #e8f2ff  !important; }
-
-/* Stack Info Window */
-#TakeStep {
-        display: block;
-}
-
-#ResultData {
-        width: 99%;
-        height: 46%;
-        border: 3px inset #CCC;
-        float: left;
-        resize: none;
-        overflow: auto;
-        background: white;
-}
-
-.oddStackElement {
-        padding-top: 3px;
-        padding-bottom: 3px;
-        background-color: #88E3FC;
-}
-
-.evenStackElement {
-        padding-top: 3px;
-        padding-bottom: 3px;
-        background-color: #E8E8A5;
-}
-
-.exceptions {
-        background-color: #F22;
-}
-
-.functionName {
-      padding-left: 10px;
-      font-family: Verdana, Geneva, sans-serif
-}
-
-.varAndValue {
-        display: block;
-        padding-left: 20px;
-        font-family: Verdana, Geneva, sans-serif
 }
