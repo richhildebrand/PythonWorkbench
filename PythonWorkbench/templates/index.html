@@ -40,17 +40,16 @@
                 <input id="TakeStep" type="button" value="Next Step">
                 <div id="ResultData"></div>
                 <div id="TestResultGrid" >
-                  <ol class="testHeaders">
+                  <ol>
                     <li>
-                      <span>Test</span>
-                      <span>Expected</span>
-                      <span>Acutual</span>
+                      <span class="testNameColumn">Test</span>
+                      <span class="resultColumn">Expected</span>
+                      <span class="resultColumn">Acutual</span>
                     </li>
                   </ol>
-                  <ol class="testColumn" 
-                      data-role="listview" 
+                  <ol data-role="listview" 
                       data-bind="source: UnitTests" 
-                      data-template="test-grid-name">
+                      data-template="test-grid-results">
                   </ol>
                 </div>
         </div>
@@ -62,12 +61,12 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/exercise.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/debugger.js"></script>
 
-<script type="text/x-kendo-template" id="test-grid-name">
+<script type="text/x-kendo-template" id="test-grid-results">
   # var testResult = workbenchViewModel.unitTestResult(data) #
   <li class=#= testResult #> 
-    <span>#= data.name #</span>
-    <span>#= data.expectedResult #</span>
-    <span>#= data.actualResult # &nbsp;</span>
+    <span class="testNameColumn">#= data.name #</span>
+    <span class="resultColumn">#= data.expectedResult #</span>
+    <span class="resultColumn">#= data.actualResult # &nbsp;</span>
   </li>
 </script>
 

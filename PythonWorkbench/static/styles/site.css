@@ -19,6 +19,8 @@ h1 {
 	margin-left: 90px;
 }
 
+a { cursor: hand; cursor: pointer; }
+
 .logo{
 	postion: absolute;
 	margin-top: -10px;	
@@ -39,8 +41,6 @@ h1 {
         margin-left: 1%;
         margin-right: 1%;
 }
-
-a { cursor: hand; cursor: pointer; }
 
 #MainArea a {
         margin-bottom: 10px;
@@ -77,21 +77,33 @@ a { cursor: hand; cursor: pointer; }
 
 #TestResultGrid {
         margin-top: 2%;
-        border: 3px inset #CCC;
+        border-top: 3px inset #CCC;
+        border-left: 3px inset #CCC;
+        border-right: 3px inset #CCC;
         width: 99%;
         float: left;
         background: white;
-}
-
-#TestResultGrid span {
-        list-style-type: none;
-        float: left;
-        width: 33%;
+        text-align: center;
 }
 
 #TestResultGrid ol {
         list-style-type: none;
         width: 100%;
+}
+
+#TestResultGrid span {
+        border-bottom: 3px inset #CCC;
+}
+
+#TestResultGrid .testNameColumn {
+        width: 60%;
+        float: left;
+}
+#TestResultGrid .resultColumn {
+        width: 20%;
+        float: left;
+        margin-left: -3px;
+        border-left: 3px solid #CCC;
 }
 
 #TestResultGrid li.testFailed span {
