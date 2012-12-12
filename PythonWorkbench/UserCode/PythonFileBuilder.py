@@ -18,10 +18,10 @@ class PythonFileBuilder:
 		return code.replace('\n', '\n\t')
 
 	def __addWrapperFunction(self, code):
-		return '\ndef WrapperFunction():\n\t' + code
+		return '\ndef GlobalScope():\n\t' + code
 
 	def __addCallForWrapperFunction(self, code):
-		return code + "\nWrapperFunction()"
+		return code + "\nGlobalScope()"
 
 	def __addFrameGetter(self, code):
 		frameGetter = 'import sys, inspect, linecache'
