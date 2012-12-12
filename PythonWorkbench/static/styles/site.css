@@ -92,18 +92,26 @@ a { cursor: hand; cursor: pointer; }
 }
 
 #TestResultGrid span {
-        border-bottom: 3px inset #CCC;
+        font-size: small;
+        border-bottom: 1px inset black;
+        font-style: verdana, arial, helvetica, sans-serif;
 }
 
 #TestResultGrid .testNameColumn {
-        width: 60%;
+        width: 46%;
         float: left;
 }
+
 #TestResultGrid .resultColumn {
-        width: 20%;
+        width: 27%;
         float: left;
-        margin-left: -3px;
-        border-left: 3px solid #CCC;
+        margin-left: -1px;
+        border-left: 1px solid black;
+}
+
+#TestResultGrid li.header span {
+        background-color: #CCC;
+        font-weight: bold;
 }
 
 #TestResultGrid li.testFailed span {
@@ -111,7 +119,6 @@ a { cursor: hand; cursor: pointer; }
 }
 
 #TestResultGrid li.testPassed span {
-        background-color: #CCC;
 }
 
 /* Code Mirror Sections */
