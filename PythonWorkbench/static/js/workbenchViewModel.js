@@ -15,14 +15,25 @@ var workbenchViewModel  = new kendo.data.ObservableObject({
 	},
 
 	loadExpectedResults: function(tests) {
-	unitTests = this.get("UnitTests"); 
+	var unitTests = this.get("UnitTests"); 
 		for (var test in tests) {
 			unitTests.push(new UnitTest(test, tests[test]));
 		}
 	},
 
+	ifAllTestsPass: function() {
+		var unitTests = this.get("UnitTests");
+		var allPass = true;
+		for (var test in unitTests) {
+			if (unitTests[test].expectedResult != unitTests[test].actualResult) {
+				allPass = false;
+			}
+		}
+		return (allPass) ? "block" : "none";
+	},
+
 	getMethodCallTextFromUnitTests: function() {
-		tests = this.get("UnitTests");
+		var tests = this.get("UnitTests");
 		var methodCalls = ""
 		if (tests) {
 			var testNames = [];
@@ -49,8 +60,8 @@ var workbenchViewModel  = new kendo.data.ObservableObject({
 	},
 
 	loadActualResults: function(tests) {
-		unitTests = this.get("UnitTests");
-		for (test in tests) { 
+		var unitTests = this.get("UnitTests");
+		for (var test in tests) { 
 						var targetTest = _.find(unitTests, function(possibleTest) { 
 							return possibleTest.name === test; 
 						});

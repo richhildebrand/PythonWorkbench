@@ -40,6 +40,10 @@
                 <input id="TakeStep" type="button" value="Next Step">
                 <div id="ResultData"></div>
                 <div id="TestResultGrid" data-bind="style: { display: ifThereAreUnitTests }" >
+                  <div class="allTestsPass" data-bind="style: { display: ifAllTestsPass }">
+                    <img src="{{ STATIC_URL }}styles/images/checkmark.jpg" />
+                    <span>All Tests Pass!<span>
+                  </div>
                   <ol>
                     <li class="header">
                       <span class="testNameColumn">Test</span>
