@@ -9,6 +9,7 @@ body {
         background-color: #333;
         height: 100%
 }
+
 h1 {
 	position: absolute;
 	display: inline;
@@ -21,6 +22,7 @@ h1 {
 
 a { cursor: hand; cursor: pointer; }
 
+/* Header */
 .logo{
 	postion: absolute;
 	margin-top: -10px;	
@@ -33,6 +35,8 @@ a { cursor: hand; cursor: pointer; }
 	height: 50px;
 	z-index: -1;
 }
+
+/* Body */
 #MainArea {
         background-color: #3574A7;
 	box-shadow:0 0 15px #FF0; 
@@ -53,28 +57,24 @@ a { cursor: hand; cursor: pointer; }
 	font-family: Verdana, Geneva, sans-serif;
 }
 
-#MainArea #MethodCalls {
-        width: 99%;
-        height: 20%;
+.PythonCodeWrap {
+        width: 46%;
+        height: 90%;
+        margin-left: 3%;
+        margin-right: 2%;
+        margin-top: 2%;
         float: left;
 }
 
-.PythonCode {
-        width: 99%;
-        height: 70%;
+.DebugResultWrap {
+        width: 46%;
+        height: 90%;
+        margin-right: 2%;
+        margin-top: 2%;
         float: left;
 }
 
-#ResultData {
-        width: 99%;
-        height: 46%;
-        border: 3px inset #CCC;
-        float: left;
-        resize: none;
-        overflow: auto;
-        background: white;
-}
-
+/* Test Results */
 #TestResultGrid {
         margin-top: 2%;
         border-top: 3px inset #CCC;
@@ -114,25 +114,17 @@ a { cursor: hand; cursor: pointer; }
         background-color: #CCC;
 }
 
-.PythonCodeWrap {
-        width: 46%;
-        height: 90%;
-        margin-left: 3%;
-        margin-right: 2%;
-        margin-top: 2%;
+/* Code Mirror Sections */
+#MainArea #MethodCalls {
+        width: 99%;
+        height: 20%;
         float: left;
 }
 
-.DebugResultWrap {
-        width: 46%;
-        height: 90%;
-        margin-right: 2%;
-        margin-top: 2%;
+.PythonCode {
+        width: 99%;
+        height: 70%;
         float: left;
-}
-
-#TakeStep {
-        display: block;
 }
 
 .pythonCodeContainer .CodeMirror {
@@ -153,6 +145,23 @@ a { cursor: hand; cursor: pointer; }
 .methodCallContainer .CodeMirror {
         border-bottom: 1px solid black;
         height: 20%;
+}
+
+.currentLine { background: #e8f2ff  !important; }
+
+/* Stack Info Window */
+#TakeStep {
+        display: block;
+}
+
+#ResultData {
+        width: 99%;
+        height: 46%;
+        border: 3px inset #CCC;
+        float: left;
+        resize: none;
+        overflow: auto;
+        background: white;
 }
 
 .oddStackElement {
@@ -181,5 +190,3 @@ a { cursor: hand; cursor: pointer; }
         padding-left: 20px;
         font-family: Verdana, Geneva, sans-serif
 }
-
-.currentLine { background: #e8f2ff  !important; }
