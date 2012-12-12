@@ -63,37 +63,12 @@
         </div>
 </div>
 
-<script>
-var pythonCodeEditor = CodeMirror.fromTextArea(document.getElementById("PythonCode"), {
-  mode: "text/x-python",
-  lineNumbers: true,
-  lineWrapping: true,
-  theme: "neat",
-  onChange: function() {
-    unitTestEditor.setOption("firstLineNumber", pythonCodeEditor.lineCount() + 1);
-  }
-});
-
-var unitTestEditor = CodeMirror.fromTextArea(document.getElementById("MethodCalls"), {
-  mode: "text/x-python",
-  lineNumbers: true,
-  lineWrapping: false,
-  theme: "neat",
-  readOnly: true,
-  firstLineNumber : pythonCodeEditor.lineCount() + 1
-});
-
-var currentLine = {   
-                    line:pythonCodeEditor.getLineHandle(0),
-                    isUserCodeLine: true
-                  };
-</script>
-
-
+<script type="text/javascript" src="{{ STATIC_URL }}js/codeMirrorEditors.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/unitTests.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/workbenchViewModel.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/exercise.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/debugger.js"></script>
+
 
 <script type="text/x-kendo-template" id="test-grid-name">
   # var testResult = workbenchViewModel.unitTestResult(data) #
