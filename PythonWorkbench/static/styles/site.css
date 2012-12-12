@@ -14,11 +14,11 @@ h1 {
 	display: inline;
 	font-size: 32px;
 	font-family: Verdana, Geneva, sans-serif;
-	/*color: #f1ebeb;*/
 	color: f5c941; 
 	margin-top: 25px;
 	margin-left: 90px;
 }
+
 .logo{
 	postion: absolute;
 	margin-top: -10px;	
@@ -34,7 +34,6 @@ h1 {
 #MainArea {
         background-color: #3574A7;
 	box-shadow:0 0 15px #FF0; 
-        /*border: 5px outset #36C;*/
         width: 98%;
         height: 81%;
         margin-left: 1%;
@@ -44,15 +43,16 @@ h1 {
 a { cursor: hand; cursor: pointer; }
 
 #MainArea a {
-        /*text-decoration: underline;*/
         margin-bottom: 10px;
         color: #FF0;
 }
+
 #MainArea p {
 	padding-top: 10px;
         padding-left: 40px;	
 	font-family: Verdana, Geneva, sans-serif;
 }
+
 #MainArea #MethodCalls {
         width: 99%;
         height: 20%;
@@ -64,6 +64,7 @@ a { cursor: hand; cursor: pointer; }
         height: 70%;
         float: left;
 }
+
 #ResultData {
         width: 99%;
         height: 46%;
@@ -82,13 +83,18 @@ a { cursor: hand; cursor: pointer; }
         background: white;
 }
 
-#TestResultGrid ol, #TestResultGrid span {
+#TestResultGrid span {
         list-style-type: none;
-        width: 32%;
         float: left;
+        width: 33%;
 }
 
-#TestResultGrid li.testFailed {
+#TestResultGrid ol {
+        list-style-type: none;
+        width: 100%;
+}
+
+#TestResultGrid li.testFailed span {
         background-color: red;
 }
 
@@ -100,6 +106,7 @@ a { cursor: hand; cursor: pointer; }
         margin-top: 2%;
         float: left;
 }
+
 .DebugResultWrap {
         width: 46%;
         height: 90%;

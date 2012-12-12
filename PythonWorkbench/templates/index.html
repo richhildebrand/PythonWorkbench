@@ -40,24 +40,17 @@
                 <input id="TakeStep" type="button" value="Next Step">
                 <div id="ResultData"></div>
                 <div id="TestResultGrid" >
-                  <span></span>
-                  <span>Test</span>
-                  <span>Expected Result</span>
-                  <span>Acutual Result</span>
+                  <ol class="testHeaders">
+                    <li>
+                      <span>Test</span>
+                      <span>Expected</span>
+                      <span>Acutual</span>
+                    </li>
+                  </ol>
                   <ol class="testColumn" 
                       data-role="listview" 
                       data-bind="source: UnitTests" 
                       data-template="test-grid-name">
-                  </ol>
-                  <ol class="expectedResultColumn" 
-                      data-role="listview" 
-                      data-bind="source: UnitTests" 
-                      data-template="test-grid-expectedResult">
-                  </ol>
-                  <ol class="actualResultColumn" 
-                      data-role="listview" 
-                      data-bind="source: UnitTests" 
-                      data-template="test-grid-actualResult">
                   </ol>
                 </div>
         </div>
@@ -69,18 +62,13 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/exercise.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/debugger.js"></script>
 
-
 <script type="text/x-kendo-template" id="test-grid-name">
   # var testResult = workbenchViewModel.unitTestResult(data) #
-  <li class=#=testResult#>#= data.name#</li>
-</script>
-<script type="text/x-kendo-template" id="test-grid-expectedResult">
-  # var testResult = workbenchViewModel.unitTestResult(data) #
-  <li class=#=testResult#>#= data.expectedResult#</li>
-</script>
-<script type="text/x-kendo-template" id="test-grid-actualResult">
-  # var testResult = workbenchViewModel.unitTestResult(data) #
-  <li class=#=testResult#>#= data.actualResult#</li>
+  <li class=#= testResult #> 
+    <span>#= data.name #</span>
+    <span>#= data.expectedResult #</span>
+    <span>#= data.actualResult # &nbsp;</span>
+  </li>
 </script>
 
 <script>
